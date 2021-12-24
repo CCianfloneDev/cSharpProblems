@@ -2,7 +2,7 @@ using System;
 /** Codecademy Learn-C# Project: Exquisite Corpse
  * Purpose: Demonstrate understanding of switch statements, and methods
  * 
- * Author: Cole Cianflone
+ * @Author: Cole Cianflone
  * Date: Dec 19, 2021
  */
 namespace ExquisiteCorpse
