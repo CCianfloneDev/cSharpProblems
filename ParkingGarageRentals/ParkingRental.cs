@@ -23,7 +23,6 @@ namespace ParkingSystem
             this.maxParkingSpots = maxParkingSpots;
             this.remainingParkingSpots = remainingParkingSpots;
             this.passChosen = passChosen;
-
         }
 
         /// <summary>
