@@ -76,11 +76,11 @@ namespace ParkingSystem
         /// <returns>Cost of parking pass.</returns>
         public int GetCost()
         {
-            int cost = 0;
             const int MonthlyPassCost = 30;
             const int WeeklyPassCost = 15;
             const int YearlyPassCost = 90;
             const int DailyPassCost = 5;
+            int cost = 0;
             switch (passChosen)
             {
                 case ParkingPass.MonthlyPass:
