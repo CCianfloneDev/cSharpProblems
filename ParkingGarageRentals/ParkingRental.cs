@@ -81,6 +81,7 @@ namespace ParkingSystem
             const int YearlyPassCost = 90;
             const int DailyPassCost = 5;
             int cost = 0;
+            
             switch (passChosen)
             {
                 case ParkingPass.MonthlyPass:
