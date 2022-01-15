@@ -14,7 +14,7 @@ namespace ZooKeepingSystem
         /// </summary>
         /// <param name="numberOfCages">Number of cages.</param>
         /// <param name="numberOfZooKeepers">Total number of zoo keepers employed.</param>
-        /// <param name="animals">Animals.</param>
+        /// <param name="animals">Stores a list of given species of animals.</param>
         public Zoo(int numberOfCages, int numberOfZooKeepers, Animals animals)
         {
             this.numberOfCages = numberOfCages;
