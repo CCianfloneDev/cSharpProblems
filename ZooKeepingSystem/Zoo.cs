@@ -25,7 +25,7 @@ namespace ZooKeepingSystem
         /// <summary>
         /// Gets number of zoo keepers employees.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Number of zoo keepers employeed.</returns>
         public int GetNumberOfZooKeepers()
         {
             return this.numberOfZooKeepers;
