@@ -46,7 +46,7 @@ namespace ZooKeepingSystem
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return $"Number of cages at zoo: {numberOfCages}\nNumber of animals: {animals.GetNumberOfAnimals()}\nTotal zoo keepers employed: {GetNumberOfZooKeepers()}\n";
+            return $"Number of cages at zoo: {numberOfCages}\nNumber of animals: {animals.GetNumberOfAnimals()}\nTotal zoo keepers employed: {GetNumberOfZooKeepers()}";
 
         }
     }
