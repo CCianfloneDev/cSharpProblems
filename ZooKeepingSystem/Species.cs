@@ -21,12 +21,12 @@ namespace ZooKeepingSystem
         Tiger,
 
         /// <summary>
-        /// A monkey
+        /// A monkey.
         /// </summary>
         Monkey,
 
         /// <summary>
-        /// A penguin
+        /// A penguin.
         /// </summary>
         Penguin
     }
