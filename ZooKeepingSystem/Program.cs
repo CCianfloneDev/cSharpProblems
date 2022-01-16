@@ -29,7 +29,7 @@ namespace ZooKeepingSystem
             // initializing menus
             EmployeeManagement employeeSystem = new EmployeeManagement(AssinaboineZoo);
             EquipmentManagement equipmentSystem = new EquipmentManagement(AssinaboineZoo);
-            AnimalManagement animalSystem = new AnimalManagement(AssinaboineZoo, animals, listOfAnimals);
+            AnimalManagement animalSystem = new AnimalManagement(animals);
 
             Console.WriteLine("ZooKeepingSystem");
             Console.WriteLine("Designed by: FakeCompany\nPlease choose an option 1 - 3.");
