@@ -11,6 +11,9 @@ namespace ZooKeepingSystem
     {
         static void Main(string[] args)
         {
+            bool sentinelValueEntered = false;
+            int optionChosen;
+            
             // declaring new list to pass to animals
             List<Species> listOfAnimals = new List<Species>();
 
