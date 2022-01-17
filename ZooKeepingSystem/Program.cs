@@ -13,7 +13,7 @@ namespace ZooKeepingSystem
         {
             bool sentinelValueEntered = false;
             int optionChosen;
-            
+
             // declaring new list to pass to animals
             List<Species> listOfAnimals = new List<Species>();
 
@@ -24,31 +24,30 @@ namespace ZooKeepingSystem
             
             Animals animals = new Animals(listOfAnimals);
             // initializing Zoo with given number of cages, zoo keepers, and list of animals.
-            Zoo AssinaboineZoo = new Zoo(4, 5, animals);
+            Zoo AssinaboineZoo = new Zoo(7, 5, animals);
 
             // initializing menus
             EmployeeManagement employeeSystem = new EmployeeManagement(AssinaboineZoo);
             EquipmentManagement equipmentSystem = new EquipmentManagement(AssinaboineZoo);
-            AnimalManagement animalSystem = new AnimalManagement(animals);
+            AnimalManagement animalSystem = new AnimalManagement(animals, AssinaboineZoo);
 
-            Console.WriteLine("ZooKeepingSystem");
-            Console.WriteLine("Designed by: FakeCompany\nPlease choose an option 1 - 3.");
-            Console.WriteLine("Press 9 to exit.");
-            Console.WriteLine(" Option (1): Employee management\n Option (2): Equipment management\n Option (3): Animal management");
-            
             do
             {
+                Console.WriteLine("ZooKeepingSystem");
+                Console.WriteLine("Designed by: Cole Cianflone\nPlease choose an option 1 - 3.");
+                Console.WriteLine("Press 9 to exit.");
+                Console.WriteLine(" Option (1): Employee management\n Option (2): Equipment management\n Option (3): Animal management");
                 optionChosen = Convert.ToInt32(Console.ReadLine());
 
+                Console.Clear();
                 switch (optionChosen)
-                {
+                { 
                     case 9:
                         sentinelValueEntered = true;
                         break;
                     case 1:
                         Console.WriteLine("Employee management entered.");
                         employeeSystem.DisplayMenu();
-                        Console.WriteLine(AssinaboineZoo.GetNumberOfZooKeepers());
                         break;
                     case 2:
                         Console.WriteLine("Equipment management entered.");
@@ -56,7 +55,7 @@ namespace ZooKeepingSystem
                         break;
                     case 3:
                         Console.WriteLine("Animal management entered.");
-                        /*WIP - animalSystem.DisplayMenu();*/
+                        animalSystem.DisplayMenu();
                         break;
                     default:
                         Console.WriteLine("Main menu entered.");
@@ -64,9 +63,6 @@ namespace ZooKeepingSystem
                 }
 
             } while (!sentinelValueEntered);
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
     }
 }
