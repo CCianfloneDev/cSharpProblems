@@ -9,16 +9,17 @@ namespace ZooKeepingSystem
     public class AnimalManagement
     {
         private Animals animals;
-        private Species species;
+        private Zoo zooName;
 
         /// <summary>
         /// Initializes animal management system with associated animals.
         /// </summary>
         /// <param name="zooName">Zoo name.</param>
         /// <param name="animals">Animal name.</param>
-        public AnimalManagement(Animals animals)
+        public AnimalManagement(Animals animals, Zoo zooName)
         {
             this.animals = animals;
+            this.zooName = zooName; 
         }
 
         /// <summary>
@@ -32,26 +33,52 @@ namespace ZooKeepingSystem
         /// <summary>
         /// Adds a specified species to list of animals.
         /// </summary>
-        /// <param name="species">Name of species.</param>
-        public void AddSpecies(Species speciesToAdd)
+        public void AddSpeciesToList()
         {
-            animals.AddSpecies(speciesToAdd);
+            Console.WriteLine("Choose a species from the list to add.");
+            Console.WriteLine($"Options are:\n (11) Giraffe\n (12) Gorilla\n (13) Tiger\n (14) Monkey\n (15) Penguin");
+
+            if (animals.GetNumberOfAnimals() >= zooName.GetNumberOfCages())
+            {
+                Console.WriteLine("Can't add animal. Not enough cages.");
+            }
+            else if (int.TryParse(Console.ReadLine(), out int animalNumber))
+            {
+                if (Enum.IsDefined(typeof(Species), animalNumber))
+                {
+                    Species animalToAdd = (Species)animalNumber;
+                    animals.AddSpecies(animalToAdd);
+                }
+            }
         }
 
         /// <summary>
         /// Removes a specified species from list of animals.
         /// </summary>
-        /// <param name="species">Name of species.</param>
-        public void RemoveSpecies(Species species)
+        public void RemoveSpeciesFromList()
         {
-            animals.RemoveSpecies(species);
+            Console.WriteLine("Choose a species from the list to remove.");
+            Console.WriteLine($"Options are:\n (11) Giraffe\n (12) Gorilla\n (13) Tiger\n (14) Monkey\n (15) Penguin");
+
+            if (int.TryParse(Console.ReadLine(), out int animalNumber))
+            {
+                if (Enum.IsDefined(typeof(Species), animalNumber))
+                {
+                    Species animalToAdd = (Species)animalNumber;
+                    animals.RemoveSpecies(animalToAdd);
+                    Console.WriteLine("Species removed");
+                }
+            }
+            else if (!Enum.IsDefined(typeof(Species), animalNumber))
+            {
+                Console.WriteLine("Invalid entry.");
+            }
         }
 
         /// <summary>
         /// Displays menu.
         /// </summary>
-        /// <returns>A menu with 4 options</returns>
-        public bool DisplayMenu()
+        public void DisplayMenu()
         {
             Console.Clear();
             Console.WriteLine("Choose an option: ");
@@ -65,19 +92,27 @@ namespace ZooKeepingSystem
             {
                 case "1":
                     Console.WriteLine($"There are : {animals.GetNumberOfAnimals()} animals");
-                    return true;
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "2":
-                    Console.WriteLine($"Species added");
-                    animals.AddSpecies(species);
-                    return true;
+                    AddSpeciesToList();
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "3":
-                    Console.WriteLine("Species removed");
-                    animals.RemoveSpecies(species);
-                    return true;
+                    RemoveSpeciesFromList();
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "4":
-                    return false;
+                    Console.WriteLine("Press any key to leave menu.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
                 default:
-                    return true;
+                    DisplayMenu();
+                    break;
             }
         }
     }
