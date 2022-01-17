@@ -38,7 +38,7 @@ namespace ZooKeepingSystem
         /// Displays menu.
         /// </summary>
         /// <returns>Menu with 4 options.</returns>
-        public bool DisplayMenu()
+        public void DisplayMenu()
         {
             Console.Clear();
             Console.WriteLine("Choose an option: ");
@@ -52,19 +52,29 @@ namespace ZooKeepingSystem
             {
                 case "1":
                     Console.WriteLine($"There is currently: {zooName.GetNumberOfZooKeepers()}");
-                    return true;
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "2":
-                    Console.WriteLine($"Employee entered in system.");
                     HireEmployee();
-                    return true;
+                    Console.WriteLine("Employee entered in system.");
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "3":
-                    Console.WriteLine("Employee removed from system.");
                     FireEmployee();
-                    return true;
+                    Console.WriteLine("Employee removed from system.");
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "4":
-                    return false;
+                    Console.WriteLine("Press any key to leave menu.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
                 default:
-                    return true;
+                    DisplayMenu();
+                    break;
             }
         }
     }
