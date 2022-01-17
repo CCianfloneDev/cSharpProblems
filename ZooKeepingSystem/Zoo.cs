@@ -1,3 +1,5 @@
+using System;
+
 namespace ZooKeepingSystem
 {
     /// <summary>
@@ -10,11 +12,11 @@ namespace ZooKeepingSystem
         private Animals animals;
 
         /// <summary>
-        /// Initializes a zoo with a set number of cages, total number of animals, number of zoo keepers, and animals.
+        /// Initializes a zoo with a set number of cages, number of zoo keepers, and list of animals.
         /// </summary>
         /// <param name="numberOfCages">Number of cages.</param>
         /// <param name="numberOfZooKeepers">Total number of zoo keepers employed.</param>
-        /// <param name="animals">Stores a list of given species of animals.</param>
+        /// <param name="animals">Animals.</param>
         public Zoo(int numberOfCages, int numberOfZooKeepers, Animals animals)
         {
             this.numberOfCages = numberOfCages;
@@ -23,9 +25,27 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
+        /// Gets number of cages in zoo.
+        /// </summary>
+        /// <returns>Number of cages.</returns>
+        public int GetNumberOfCages()
+        {
+            return this.numberOfCages;
+        }
+
+        /// <summary>
+        /// Sets number of cages in zoo.
+        /// </summary>
+        /// <param name="numberOfCages">Number of cages.</param>
+        public void SetNumberOfCages(int numberOfCages)
+        {
+            this.numberOfCages = numberOfCages;
+        }
+
+        /// <summary>
         /// Gets number of zoo keepers employees.
         /// </summary>
-        /// <returns>Number of zoo keepers employeed.</returns>
+        /// <returns></returns>
         public int GetNumberOfZooKeepers()
         {
             return this.numberOfZooKeepers;
@@ -46,8 +66,7 @@ namespace ZooKeepingSystem
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return $"Number of cages at zoo: {numberOfCages}\nNumber of animals: {animals.GetNumberOfAnimals()}\nTotal zoo keepers employed: {GetNumberOfZooKeepers()}";
-
+            return $"Number of cages at zoo: {numberOfCages}\nNumber of animals: {animals.GetNumberOfAnimals()}\nTotal zoo keepers employed: {GetNumberOfZooKeepers()}\n";
         }
     }
 }
