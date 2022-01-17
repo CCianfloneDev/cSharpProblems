@@ -46,8 +46,7 @@ namespace ZooKeepingSystem
         /// <summary>
         /// Displays menu.
         /// </summary>
-        /// <returns>Menu with 4 options</returns>
-        public bool DisplayMenu()
+        public void DisplayMenu()
         {
             Console.Clear();
             Console.WriteLine("Choose an option: ");
@@ -61,19 +60,29 @@ namespace ZooKeepingSystem
             {
                 case "1":
                     Console.WriteLine($"There is currently: {zooName.GetNumberOfCages()}");
-                    return true;
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "2":
-                    Console.WriteLine($"Cage added.");
                     AddCage();
-                    return true;
+                    Console.WriteLine("Cage added to system.");
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "3":
-                    Console.WriteLine("Cage removed.");
                     RemoveCage();
-                    return true;
+                    Console.WriteLine("Cage removed.");
+                    Console.WriteLine("Press any key to move on.");
+                    Console.ReadKey();
+                    goto default;
                 case "4":
-                    return false;
+                    Console.WriteLine("Press any key to leave menu.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
                 default:
-                    return true;
+                    DisplayMenu();
+                    break;
             }
         }
     }
