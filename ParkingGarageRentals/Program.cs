@@ -21,32 +21,43 @@ namespace ParkingGarageProj
             int passNumberSelected;
             ParkingPass passChosen = ParkingPass.None;
 
-            // input
-            Console.WriteLine("Rent a spot in the parking garage.");
-            Console.WriteLine("DailyPass: $5 (1), WeeklyPass: $15 (2), MonthlyPass: $30 (3), YearlyPass: $90 (4)");
-            Console.Write("Please choose a parking pass (Enter number 1 - 4): ");
-            passNumberSelected = Convert.ToInt32(Console.ReadLine());
+            const int SentinelValue = 9;
 
-            if (passNumberSelected < 1 || passNumberSelected > 4)
+            do
             {
-                Console.WriteLine("Please enter a valid choice between 1 - 4");
-            }
-           
-            switch (passNumberSelected)
-            {
-                case 1: passChosen = ParkingPass.DailyPass;
-                    remainingParkingSpots--;
-                    break;
-                case 2: passChosen = ParkingPass.WeeklyPass;
-                    remainingParkingSpots--;
-                    break;
-                case 3: passChosen = ParkingPass.MonthlyPass;
-                    remainingParkingSpots--;
-                    break;
-                case 4: passChosen = ParkingPass.YearlyPass;
-                    remainingParkingSpots--;
-                    break;
-            }
+                Console.Clear();
+                // input
+                Console.WriteLine($"Rent a spot in the parking garage. Remaining Spots: {remainingParkingSpots}");
+                Console.WriteLine("Press 9 to exit...");
+                Console.WriteLine("DailyPass: $5 (1), WeeklyPass: $15 (2), MonthlyPass: $30 (3), YearlyPass: $90 (4)");
+                Console.Write("Please choose a parking pass (Enter number 1 - 4): ");
+
+                passNumberSelected = Convert.ToInt32(Console.ReadLine());
+
+                switch (passNumberSelected)
+                {
+                    case int n when (n > 4 || n < 1):
+                        Console.WriteLine("Please enter a valid choice between 1 - 4");
+                        break;
+                    case 1:
+                        passChosen = ParkingPass.DailyPass;
+                        remainingParkingSpots--;
+                        break;
+                    case 2:
+                        passChosen = ParkingPass.WeeklyPass;
+                        remainingParkingSpots--;
+                        break;
+                    case 3:
+                        passChosen = ParkingPass.MonthlyPass;
+                        remainingParkingSpots--;
+                        break;
+                    case 4:
+                        passChosen = ParkingPass.YearlyPass;
+                        remainingParkingSpots--;
+                        break;
+                }
+
+            } while (passNumberSelected != SentinelValue);
 
             ParkingRental Spot01 = new ParkingRental(MaxParkingSpots, remainingParkingSpots, passChosen);
 
