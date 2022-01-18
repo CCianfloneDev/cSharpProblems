@@ -7,15 +7,15 @@ namespace ZooKeepingSystem
     /// </summary>
     public class EquipmentManagement
     {
-        private Zoo zooName;
+        private Zoo zoo;
 
         /// <summary>
         /// Initializes equipment management system with an associated zoo.
         /// </summary>
-        /// <param name="zooName">A zoo.</param>
-        public EquipmentManagement(Zoo zooName)
+        /// <param name="zoo">A zoo.</param>
+        public EquipmentManagement(Zoo zoo)
         {
-            this.zooName = zooName;
+            this.zoo = zoo;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace ZooKeepingSystem
         /// <returns>Number of cages.</returns>
         public int GetCurrentCageCount()
         {
-            return zooName.GetNumberOfCages();
+            return zoo.GetNumberOfCages();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void AddCage()
         {
-            zooName.SetNumberOfCages(GetCurrentCageCount() + 1);
+            zoo.SetNumberOfCages(GetCurrentCageCount() + 1);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void RemoveCage()
         {
-            zooName.SetNumberOfCages(GetCurrentCageCount() - 1);
+            zoo.SetNumberOfCages(GetCurrentCageCount() - 1);
         }
 
         /// <summary>
@@ -59,31 +59,32 @@ namespace ZooKeepingSystem
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There is currently: {zooName.GetNumberOfCages()}");
+                    Console.WriteLine($"There is currently: {zoo.GetNumberOfCages()}");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    goto default;
+                    Console.Clear();
+                    break;
                 case "2":
                     AddCage();
                     Console.WriteLine("Cage added to system.");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    goto default;
+                    Console.Clear();
+                    break;
                 case "3":
                     RemoveCage();
                     Console.WriteLine("Cage removed.");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    goto default;
+                    Console.Clear();
+                    break;
                 case "4":
                     Console.WriteLine("Press any key to leave menu.");
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                default:
-                    DisplayMenu();
-                    break;
             }
+            DisplayMenu();
         }
     }
 }
