@@ -108,7 +108,6 @@ namespace ZooKeepingSystem
                 case "4":
                     Console.WriteLine("Press any key to leave menu.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 default:
                     DisplayMenu();
