@@ -7,21 +7,32 @@ namespace ZooKeepingSystem
     /// </summary>
     public class Zoo
     {
+        private Animals animals;
+        private string name;
         private int numberOfCages;
         private int numberOfZooKeepers;
-        private Animals animals;
 
         /// <summary>
-        /// Initializes a zoo with a set number of cages, number of zoo keepers, and list of animals.
+        /// Initializes a zoo with a name, set number of cages, number of zoo keepers, and list of animals.
         /// </summary>
+        /// <param name="name">The name of the zoo.</param>
         /// <param name="numberOfCages">Number of cages.</param>
         /// <param name="numberOfZooKeepers">Total number of zoo keepers employed.</param>
         /// <param name="animals">Animals.</param>
-        public Zoo(int numberOfCages, int numberOfZooKeepers, Animals animals)
+        public Zoo(string name, int numberOfCages, int numberOfZooKeepers, Animals animals)
         {
+            this.name = name;
+            this.animals = animals;
             this.numberOfCages = numberOfCages;
             this.numberOfZooKeepers = numberOfZooKeepers;
-            this.animals = animals;
+        }
+        
+        /// <summary>
+        /// Initializes a zoo with a name, 0 cages, 1 zoo keeper, and no animals in the care.
+        /// </summary>
+        /// <param name="name">The name of the zoo.</param>
+        public Zoo(string name) : this(name, 0, 1, null)
+        {
         }
 
         /// <summary>
