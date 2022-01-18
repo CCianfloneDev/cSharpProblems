@@ -62,26 +62,22 @@ namespace ZooKeepingSystem
                     Console.WriteLine($"There is currently: {zoo.GetNumberOfCages()}");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 case "2":
                     AddCage();
                     Console.WriteLine("Cage added to system.");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 case "3":
                     RemoveCage();
                     Console.WriteLine("Cage removed.");
                     Console.WriteLine("Press any key to move on.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 case "4":
                     Console.WriteLine("Press any key to leave menu.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
             }
             DisplayMenu();
