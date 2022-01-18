@@ -8,7 +8,7 @@ namespace ZooKeepingSystem
     /// </summary>
     public class Animals
     {
-        private List<Species> animals = new List<Species>();
+        private List<Species> animals;
 
         /// <summary>
         /// Initializes array of animals with given species.
@@ -29,9 +29,8 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
-        /// Prints list of animals.
+        /// Prints the name of each animal in list of species on new lines.
         /// </summary>
-        /// <returns>Species.</returns>
         public void PrintSpecies()
         {
             foreach(Species animal in animals)
@@ -53,7 +52,6 @@ namespace ZooKeepingSystem
         /// Removes a specified specie from list of animals.
         /// </summary>
         /// <param name="animalToRemove"></param>
-        /// <returns></returns>
         public void RemoveSpecies(Species animalToRemove)
         {
             animals.Remove(animalToRemove);
