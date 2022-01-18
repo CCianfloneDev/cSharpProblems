@@ -37,7 +37,6 @@ namespace ZooKeepingSystem
         /// <summary>
         /// Displays menu.
         /// </summary>
-        /// <returns>Menu with 4 options.</returns>
         public void DisplayMenu()
         {
             Console.Clear();
@@ -70,7 +69,6 @@ namespace ZooKeepingSystem
                 case "4":
                     Console.WriteLine("Press any key to leave menu.");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 default:
                     DisplayMenu();
