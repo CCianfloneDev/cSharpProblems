@@ -44,12 +44,12 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
-        /// Displays menu.
+        /// Displays the Equipment Management Menu.
         /// </summary>
         public void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("Choose an option: ");
+            Console.WriteLine("Available options: ");
             Console.WriteLine("(1) View Cages");
             Console.WriteLine("(2) Add Cages");
             Console.WriteLine("(3) Remove cages");
@@ -80,7 +80,10 @@ namespace ZooKeepingSystem
                     Console.ReadKey();
                     break;
             }
+            
             DisplayMenu();
         }
     }
+    
+    
 }
