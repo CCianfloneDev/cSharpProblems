@@ -7,15 +7,15 @@ namespace ZooKeepingSystem
     /// </summary>
     public class EmployeeManagement
     {
-        private Zoo zooName;
+        private Zoo zoo;
 
         /// <summary>
         /// Initializes an employee management system with a given zoo.
         /// </summary>
-        /// <param name="zooName">Name of zoo associated with system.</param>
-        public EmployeeManagement(Zoo zooName)
+        /// <param name="zoo">Name of zoo associated with system.</param>
+        public EmployeeManagement(Zoo zoo)
         {
-            this.zooName = zooName;       
+            this.zoo = zoo;       
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void HireEmployee()
         {
-            zooName.SetNumberOfZooKeepers(zooName.GetNumberOfZooKeepers() + 1);
+            zoo.SetNumberOfZooKeepers(zoo.GetNumberOfZooKeepers() + 1);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void FireEmployee()
         {
-            zooName.SetNumberOfZooKeepers(zooName.GetNumberOfZooKeepers() - 1);
+            zoo.SetNumberOfZooKeepers(zoo.GetNumberOfZooKeepers() - 1);
         }
 
         /// <summary>
@@ -50,30 +50,44 @@ namespace ZooKeepingSystem
             switch(Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There is currently: {zooName.GetNumberOfZooKeepers()}");
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    Console.WriteLine($"There is currently: {zoo.GetNumberOfZooKeepers()}");
+                    EmployeeManagement.ConfirmMessage();
+                    break;
                 case "2":
                     HireEmployee();
                     Console.WriteLine("Employee entered in system.");
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    EmployeeManagement.ConfirmMessage();
+                    break;
                 case "3":
                     FireEmployee();
                     Console.WriteLine("Employee removed from system.");
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    EmployeeManagement.ConfirmMessage();
+                    break;
                 case "4":
-                    Console.WriteLine("Press any key to leave menu.");
-                    Console.ReadKey();
-                    break;
-                default:
-                    DisplayMenu();
-                    break;
+                    EmployeeManagement.ConfirmMessage("Press any key to leave menu.");
+                    Console.Clear();
+                    return;
             }
+
+            DisplayMenu();
+        }
+
+        /// <summary>
+        /// Displays a prompt to allow user to press a key to continue.
+        /// </summary>
+        private static void ConfirmMessage()
+        {
+            EmployeeManagement.ConfirmMessage("Press any key to continue...");
+        }
+
+        /// <summary>
+        /// Displays a custom prompt and allows user to press a key to continue.
+        /// </summary>
+        /// <param name="message">The custom message to deliver to the user.</param>
+        private static void ConfirmMessage(string message)
+        {
+            Console.WriteLine(message);
+            Console.ReadKey();
         }
     }
 }
