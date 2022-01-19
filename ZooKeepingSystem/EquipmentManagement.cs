@@ -74,28 +74,29 @@ namespace ZooKeepingSystem
                     break;
                 case "4":
                     EquipmentManagement.ConfirmMessage("Press any key to leave menu.");
+                    Console.Clear();
                     return;
             }
-            
+
             DisplayMenu();
         }
-    }
-    
-    /// <summary>
-    /// Displays a prompt to allow user to press a key to continue.
-    /// </summary>
-    private static void ConfirmMessage()
-    {
-        EquipmentManagement.ConfirmMessage("Press any key to continue...");
-    }
-    
-    /// <summary>
-    /// Displays a custom prompt and allows user to press a key to continue.
-    /// </summary>
-    /// <param name="message">The custom message to deliver to the user.</param>
-    private static void ConfirmMessage(string message)
-    {
-        Console.WriteLine(message);
-        Console.ReadKey();
+
+        /// <summary>
+        /// Displays a prompt to allow user to press a key to continue.
+        /// </summary>
+        private static void ConfirmMessage()
+        {
+            EquipmentManagement.ConfirmMessage("Press any key to continue...");
+        }
+
+        /// <summary>
+        /// Displays a custom prompt and allows user to press a key to continue.
+        /// </summary>
+        /// <param name="message">The custom message to deliver to the user.</param>
+        private static void ConfirmMessage(string message)
+        {
+            Console.WriteLine(message);
+            Console.ReadKey();
+        }
     }
 }
