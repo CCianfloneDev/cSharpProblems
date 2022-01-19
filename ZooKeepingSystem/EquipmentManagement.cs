@@ -7,15 +7,15 @@ namespace ZooKeepingSystem
     /// </summary>
     public class EquipmentManagement
     {
-        private Zoo zooName;
+        private Zoo zoo;
 
         /// <summary>
         /// Initializes equipment management system with an associated zoo.
         /// </summary>
-        /// <param name="zooName">A zoo.</param>
-        public EquipmentManagement(Zoo zooName)
+        /// <param name="zoo">A zoo.</param>
+        public EquipmentManagement(Zoo zoo)
         {
-            this.zooName = zooName;
+            this.zoo = zoo;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace ZooKeepingSystem
         /// <returns>Number of cages.</returns>
         public int GetCurrentCageCount()
         {
-            return zooName.GetNumberOfCages();
+            return zoo.GetNumberOfCages();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void AddCage()
         {
-            zooName.SetNumberOfCages(GetCurrentCageCount() + 1);
+            zoo.SetNumberOfCages(GetCurrentCageCount() + 1);
         }
 
         /// <summary>
@@ -40,17 +40,16 @@ namespace ZooKeepingSystem
         /// </summary>
         public void RemoveCage()
         {
-            zooName.SetNumberOfCages(GetCurrentCageCount() - 1);
+            zoo.SetNumberOfCages(GetCurrentCageCount() - 1);
         }
 
         /// <summary>
-        /// Displays menu.
+        /// Displays the Equipment Management Menu.
         /// </summary>
-        /// <returns>Menu with 4 options</returns>
-        public bool DisplayMenu()
+        public void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("Choose an option: ");
+            Console.WriteLine("Available options: ");
             Console.WriteLine("(1) View Cages");
             Console.WriteLine("(2) Add Cages");
             Console.WriteLine("(3) Remove cages");
@@ -60,21 +59,44 @@ namespace ZooKeepingSystem
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There is currently: {zooName.GetNumberOfCages()}");
-                    return true;
+                    Console.WriteLine($"There is currently: {zoo.GetNumberOfCages()}");
+                    EquipmentManagement.ConfirmMessage();
+                    break;
                 case "2":
-                    Console.WriteLine($"Cage added.");
                     AddCage();
-                    return true;
+                    Console.WriteLine("Cage added to system.");
+                    EquipmentManagement.ConfirmMessage();
+                    break;
                 case "3":
-                    Console.WriteLine("Cage removed.");
                     RemoveCage();
-                    return true;
+                    Console.WriteLine("Cage removed.");
+                    EquipmentManagement.ConfirmMessage();
+                    break;
                 case "4":
-                    return false;
-                default:
-                    return true;
+                    EquipmentManagement.ConfirmMessage("Press any key to leave menu.");
+                    Console.Clear();
+                    return;
             }
+
+            DisplayMenu();
+        }
+
+        /// <summary>
+        /// Displays a prompt to allow user to press a key to continue.
+        /// </summary>
+        private static void ConfirmMessage()
+        {
+            EquipmentManagement.ConfirmMessage("Press any key to continue...");
+        }
+
+        /// <summary>
+        /// Displays a custom prompt and allows user to press a key to continue.
+        /// </summary>
+        /// <param name="message">The custom message to deliver to the user.</param>
+        private static void ConfirmMessage(string message)
+        {
+            Console.WriteLine(message);
+            Console.ReadKey();
         }
     }
 }
