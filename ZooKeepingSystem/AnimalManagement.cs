@@ -9,17 +9,17 @@ namespace ZooKeepingSystem
     public class AnimalManagement
     {
         private Animals animals;
-        private Zoo zooName;
+        private Zoo zoo;
 
         /// <summary>
         /// Initializes animal management system with associated animals.
         /// </summary>
-        /// <param name="zooName">Zoo name.</param>
+        /// <param name="zoo">Zoo name.</param>
         /// <param name="animals">Animal name.</param>
-        public AnimalManagement(Animals animals, Zoo zooName)
+        public AnimalManagement(Animals animals, Zoo zoo)
         {
             this.animals = animals;
-            this.zooName = zooName; 
+            this.zoo = zoo; 
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ZooKeepingSystem
             Console.WriteLine("Choose a species from the list to add.");
             Console.WriteLine($"Options are:\n (11) Giraffe\n (12) Gorilla\n (13) Tiger\n (14) Monkey\n (15) Penguin");
 
-            if (animals.GetNumberOfAnimals() >= zooName.GetNumberOfCages())
+            if (animals.GetNumberOfAnimals() >= zoo.GetNumberOfCages())
             {
                 Console.WriteLine("Can't add animal. Not enough cages.");
             }
@@ -92,27 +92,40 @@ namespace ZooKeepingSystem
             {
                 case "1":
                     Console.WriteLine($"There are : {animals.GetNumberOfAnimals()} animals");
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    AnimalManagement.ConfirmMessage();
+                    break;
                 case "2":
                     AddSpeciesToList();
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    AnimalManagement.ConfirmMessage();
+                    break;
                 case "3":
                     RemoveSpeciesFromList();
-                    Console.WriteLine("Press any key to move on.");
-                    Console.ReadKey();
-                    goto default;
+                    AnimalManagement.ConfirmMessage();
+                    break;
                 case "4":
-                    Console.WriteLine("Press any key to leave menu.");
-                    Console.ReadKey();
-                    break;
-                default:
-                    DisplayMenu();
-                    break;
+                    AnimalManagement.ConfirmMessage();
+                    return;
             }
+
+            DisplayMenu();
+        }
+
+        /// <summary>
+        /// Displays a prompt to allow user to press a key to continue.
+        /// </summary>
+        private static void ConfirmMessage()
+        {
+            AnimalManagement.ConfirmMessage("Press any key to continue...");
+        }
+
+        /// <summary>
+        /// Displays a custom prompt and allows user to press a key to continue.
+        /// </summary>
+        /// <param name="message">The custom message to deliver to the user.</param>
+        private static void ConfirmMessage(string message)
+        {
+            Console.WriteLine(message);
+            Console.ReadKey();
         }
     }
 }
