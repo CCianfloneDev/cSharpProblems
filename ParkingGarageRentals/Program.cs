@@ -62,9 +62,9 @@ namespace ParkingGarageProj
             ParkingRental Spot01 = new ParkingRental(MaxParkingSpots, remainingParkingSpots, passChosen);
 
             // testing
-            Console.WriteLine($" Maximum Parking spots: {Spot01.GetMaxParkingSpots()}");
-            Console.WriteLine($" Remaining Parking spots: {Spot01.GetRemainingParkingSpots()}");
-            Console.WriteLine($" Pass Chosen: {Spot01.GetPassChosen()}");
+            Console.WriteLine($" Maximum Parking spots: {Spot01.MaxParkingSpots}");
+            Console.WriteLine($" Remaining Parking spots: {Spot01.RemainingParkingSpots}");
+            Console.WriteLine($" Pass Chosen: {Spot01.PassChosen}");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
