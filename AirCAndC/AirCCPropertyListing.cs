@@ -10,10 +10,43 @@ namespace AirCandC_api
     {
         private int numberOfRooms;
         private int numberOfBathrooms;
-        private int squareFootage;
-        private string address;
-        private RenterPackages rentTypeOffered;
-        private int priceForPackage;
+
+        /// <summary>
+        /// Gets square footage of rental property.
+        /// </summary>
+        public int SquareFootage 
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets address of rental property.
+        /// </summary>
+        public string Address
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets rent type offered.
+        /// </summary>
+        public RenterPackages RentTypeOffered
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets price for rent type offered.
+        /// </summary>
+        public int PriceForPackage
+        {
+            get;
+            private set;
+        }
+
         private List<Amenities> amenities = new List<Amenities>();
 
         /// <summary>
@@ -26,15 +59,15 @@ namespace AirCandC_api
         /// <param name="rentTypeOffered">Rent package associated with this listing (daily, weekly, monthly)</param>
         /// <param name="priceForPackage">Price associated with renting package chosen.</param>
         /// <param name="amenities">Amenities associated with this listing.</param>
-        public AirCCPropertyListing(int numberOfRooms, int numberOfBathrooms, int squareFootage,
-                                    string address, RenterPackages rentTypeOffered, int priceForPackage, List<Amenities> amenities)
+        public AirCCPropertyListing(int numberOfRooms, int numberOfBathrooms, int squareFootage, 
+            string address, RenterPackages rentTypeOffered, int priceForPackage, List<Amenities> amenities)
         {
             this.numberOfRooms = numberOfRooms;
             this.numberOfBathrooms = numberOfBathrooms;
-            this.squareFootage = squareFootage;
-            this.address = address;
-            this.rentTypeOffered = rentTypeOffered;
-            this.priceForPackage = priceForPackage;
+            this.SquareFootage = squareFootage;
+            this.Address = address;
+            this.RentTypeOffered = rentTypeOffered;
+            this.PriceForPackage = priceForPackage;
             this.amenities = amenities;
         }
 
@@ -71,79 +104,6 @@ namespace AirCandC_api
         public void SetNumberOfBathrooms(int numberOfBathrooms)
         {
             this.numberOfBathrooms = numberOfBathrooms;
-        }
-
-        /// <summary>
-        /// Gets square footage of property.
-        /// </summary>
-        /// <returns>Square footage.</returns>
-        public int GetSquareFootage()
-        {
-            return this.squareFootage;
-        }
-
-        /// <summary>
-        /// Sets square footage of property.
-        /// </summary>
-        /// <param name="squareFootage">Square footage.</param>
-        public void SetSquareFootage(int squareFootage)
-        {
-            this.squareFootage = squareFootage;
-        }
-
-        /// <summary>
-        /// Gets address of property.
-        /// </summary>
-        /// <returns>Address of property.</returns>
-        public string GetAddress()
-        {
-            return this.address;
-        }
-
-        /// <summary>
-        /// Sets address of property.
-        /// </summary>
-        /// <param name="address">Address of property.</param>
-        public void SetAddress(string address)
-        {
-            this.address = address;
-        }
-
-        /// <summary>
-        /// Gets the renting type of listing (daily, weekly, monthly).
-        /// </summary>
-        /// <returns>Renting package.</returns>
-        public RenterPackages GetRentTypeOffered()
-        {
-            return this.rentTypeOffered;
-        }
-
-
-        /// <summary>
-        /// Sets renting type of listing (daily, weekly, monthly).
-        /// </summary>
-        /// <param name="rentTypeOffered">Renting package.</param>
-        public void SetRentTypeOffered(RenterPackages rentTypeOffered)
-        {
-            this.rentTypeOffered = rentTypeOffered;
-        }
-
-        /// <summary>
-        /// Gets price associated with renting package chosen.
-        /// </summary>
-        /// <returns>Price of renting package.</returns>
-        public int GetPriceForPackage()
-        {
-            return this.priceForPackage;
-        }
-
-        /// <summary>
-        /// Sets price of renting package.
-        /// </summary>
-        /// <param name="priceForPackage">Price of renting package.</param>
-        public void SetPriceForPackage(int priceForPackage)
-        {
-            this.priceForPackage = priceForPackage;
         }
 
         /// <summary>
@@ -186,13 +146,13 @@ namespace AirCandC_api
         /// <returns>Property listing.</returns>
         public override string ToString()
         {
-            return $"Property listing on Air c&c:" +
+            return $"Property listing on Air C&C:" +
                    $"\n Rooms: {GetNumberOfRooms()}" +
                    $"\n Bathrooms: {GetNumberOfBathrooms()}" +
-                   $"\n Square footage: {GetSquareFootage()}" +
-                   $"\n Address: {GetAddress()}" +
-                   $"\n Rent type: {GetRentTypeOffered()}" +
-                   $"\n Rent cost: {GetPriceForPackage()}";
+                   $"\n Square footage: {SquareFootage}" +
+                   $"\n Address: {Address}" +
+                   $"\n Rent type: {RentTypeOffered}" +
+                   $"\n Rent cost: {PriceForPackage}";
         }
     }
 }
