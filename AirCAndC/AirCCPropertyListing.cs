@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace AirCandC_api
 {
     /// <summary>
-    /// Represents a rental property listing on Air c&c.
+    /// Represents a rental property listing on Air C&C.
     /// </summary>
     public class AirCCPropertyListing
     {
