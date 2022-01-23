@@ -18,7 +18,7 @@ namespace ParkingGarageProj
             // Variables
             const int MaxParkingSpots = 55;
             int remainingParkingSpots = 55;
-            int passNumberSelected;
+            int passNumberSelected = 0;
             ParkingPass passChosen = ParkingPass.None;
 
             const int SentinelValue = 9;
@@ -32,12 +32,22 @@ namespace ParkingGarageProj
                 Console.WriteLine("DailyPass: $5 (1), WeeklyPass: $15 (2), MonthlyPass: $30 (3), YearlyPass: $90 (4)");
                 Console.Write("Please choose a parking pass (Enter number 1 - 4): ");
 
-                passNumberSelected = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    passNumberSelected = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Must enter a valid number.");
+                }
 
                 switch (passNumberSelected)
                 {
-                    case int n when (n > 4 || n < 1):
+                    case 9:
+                        break;
+                    case int n when (n < 1 || n > 4):
                         Console.WriteLine("Please enter a valid choice between 1 - 4");
+                        Console.ReadKey();
                         break;
                     case 1:
                         passChosen = ParkingPass.DailyPass;
