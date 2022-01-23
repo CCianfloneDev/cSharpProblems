@@ -1,3 +1,5 @@
+using System;
+
 /* Author: Cole Cianflone
  * Date: Jan 13th, 2022
  */
@@ -38,8 +40,19 @@ namespace ParkingSystem
         /// <param name="maxParkingSpots">Maximum parking capacity of parking garage.</param>
         /// <param name="remainingParkingSpots">Remaining parking spots of parking garage.</param>
         /// <param name="passChosen">Parking pass chosen associated to the parking garage.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when max parking spots or remaining parking spots is initialized below zero.</exception>
         public ParkingRental(int maxParkingSpots, int remainingParkingSpots, ParkingPass passChosen)
         {
+            if(maxParkingSpots < 0)
+            {
+                throw new ArgumentOutOfRangeException("maxParkingSpots", "Argument cannot be less than zero.");
+            }
+            if(remainingParkingSpots < 0)
+            {
+                throw new ArgumentOutOfRangeException("remainingParkingSpots", "Argument cannot be less than zero.");
+            }
+
+
             this.MaxParkingSpots = maxParkingSpots;
             this.RemainingParkingSpots = remainingParkingSpots;
             this.PassChosen = passChosen;
