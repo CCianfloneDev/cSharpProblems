@@ -50,7 +50,7 @@ namespace AirCandC_api
         private List<Amenities> amenities = new List<Amenities>();
 
         /// <summary>
-        /// Initializes a listing on Air c&c
+        /// Initializes a listing on Air C&C
         /// </summary>
         /// <param name="numberOfRooms">Number of rooms.</param>
         /// <param name="numberOfBathrooms">Number of bathrooms.</param>
@@ -141,7 +141,7 @@ namespace AirCandC_api
         }
 
         /// <summary>
-        /// Returns a string representation of the listing on Air c&c.
+        /// Returns a string representation of the listing on Air C&C.
         /// </summary>
         /// <returns>Property listing.</returns>
         public override string ToString()
