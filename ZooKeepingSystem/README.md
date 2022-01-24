@@ -1,5 +1,5 @@
 ## Mock Zoo Keeping System ##
-### Developed by: Cole Cianflone ###
+### Developed by: CCianfloneDev ###
 
 #### Simple program to demonstrate active learning and understanding of OOP. ####
 #### Using a console prompt the user can mimic different activites that a zoo might need to do, such as remove/add employees, animals, and zoo equipment. ####
