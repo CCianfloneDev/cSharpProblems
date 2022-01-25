@@ -17,8 +17,6 @@ namespace AirCandC
             AirCCPropertyListing listing01 = new AirCCPropertyListing(2, 2, 1500, "1080 Fleming avenue", RenterPackages.Weekly, 500, amenities);
 
             Console.WriteLine(listing01.ToString());
-            Console.WriteLine("Amenities: ");
-            listing01.PrintAmenities();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
