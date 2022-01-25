@@ -116,19 +116,23 @@ namespace AirCandC_api
         }
 
         /// <summary>
-        /// Prints amenities associated with property.
+        /// Returns string of amenities offered at property listing.
         /// </summary>
-        public void PrintAmenities()
+        /// <returns>Amenities.</returns>
+        public string GetAmenitiesString()
         {
+            List<string> amenitiesString = new List<string>();
 
-            foreach (Amenities amenities in this.amenities)
-            {
-                Console.WriteLine($" {amenities} ");
-            }
             if (amenities.Count <= 0)
             {
-                Console.WriteLine(" No amenities.");
+                return " No amenities.";
             }
+            foreach (Amenities amenitie in this.amenities)
+            {
+                amenitiesString.Add(amenitie.ToString());
+            }
+
+            return String.Join(", ", amenitiesString);
         }
 
         /// <summary>
@@ -152,7 +156,8 @@ namespace AirCandC_api
                    $"\n Square footage: {SquareFootage}" +
                    $"\n Address: {Address}" +
                    $"\n Rent type: {RentTypeOffered}" +
-                   $"\n Rent cost: {PriceForPackage}";
+                   $"\n Rent cost: {PriceForPackage}" +
+                   $"\n Amenities: {GetAmenitiesString()}";
         }
     }
 }
