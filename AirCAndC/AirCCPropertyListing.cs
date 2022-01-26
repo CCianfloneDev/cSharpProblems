@@ -106,14 +106,20 @@ namespace AirCandC_api
             this.numberOfBathrooms = numberOfBathrooms;
         }
 
-        /// <summary>
-        /// Gets list of amenities offered on property.
-        /// </summary>
-        /// <returns>Amenities offered.</returns>
-        public List<Amenities> GetAmenitiesOffered()
-        {
-            return this.amenities;
-        }
+        ///// <summary>
+        ///// Gets list of amenities offered on property.
+        ///// </summary>
+        ///// <returns>Amenities offered.</returns>
+        //public List<Amenities> GetAmenitiesOffered()
+        //{
+        //    List<Amenities> amenitiesReturned = new List<Amenities>();
+
+        //    foreach(Amenities amenitie in amenities)
+        //    {
+        //        amenitiesReturned.Add(amenitie);
+        //    }
+        //    return amenitiesReturned;
+        //}
 
         /// <summary>
         /// Returns string of amenities offered at property listing.
