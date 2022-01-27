@@ -147,7 +147,14 @@ namespace AirCandC_api
         /// <param name="amenities">Amenities offered.</param>
         public void SetAmenitiesOffered(List<Amenities> amenities)
         {
-            this.amenities = amenities;
+            List<Amenities> amenitiesSet = new List<Amenities>();
+
+            foreach (Amenities amenitie in amenities)
+            {
+                amenitiesSet.Add(amenitie);
+            }
+
+            this.amenities = amenitiesSet;
         }
 
         /// <summary>
