@@ -23,7 +23,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void HireEmployee()
         {
-            zoo.SetNumberOfZooKeepers(zoo.GetNumberOfZooKeepers() + 1);
+            zoo.NumberOfZooKeepers++;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void FireEmployee()
         {
-            zoo.SetNumberOfZooKeepers(zoo.GetNumberOfZooKeepers() - 1);
+            zoo.NumberOfZooKeepers--;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace ZooKeepingSystem
             switch(Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There is currently: {zoo.GetNumberOfZooKeepers()}");
+                    Console.WriteLine($"There is currently: {zoo.NumberOfZooKeepers}");
                     EmployeeManagement.ConfirmMessage();
                     break;
                 case "2":
