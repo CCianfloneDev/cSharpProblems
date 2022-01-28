@@ -24,7 +24,7 @@ namespace ZooKeepingSystem
         /// <returns>Number of cages.</returns>
         public int GetCurrentCageCount()
         {
-            return zoo.GetNumberOfCages();
+            return zoo.NumberOfCages;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void AddCage()
         {
-            zoo.SetNumberOfCages(GetCurrentCageCount() + 1);
+            zoo.NumberOfCages++;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace ZooKeepingSystem
         /// </summary>
         public void RemoveCage()
         {
-            zoo.SetNumberOfCages(GetCurrentCageCount() - 1);
+            zoo.NumberOfCages--;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace ZooKeepingSystem
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There is currently: {zoo.GetNumberOfCages()}");
+                    Console.WriteLine($"There is currently: {zoo.NumberOfCages}");
                     EquipmentManagement.ConfirmMessage();
                     break;
                 case "2":
