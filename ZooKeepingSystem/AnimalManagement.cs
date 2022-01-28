@@ -38,7 +38,7 @@ namespace ZooKeepingSystem
             Console.WriteLine("Choose a species from the list to add.");
             Console.WriteLine($"Options are:\n (11) Giraffe\n (12) Gorilla\n (13) Tiger\n (14) Monkey\n (15) Penguin");
 
-            if (animals.GetNumberOfAnimals() >= zoo.GetNumberOfCages())
+            if (animals.NumberOfAnimals >= zoo.NumberOfCages)
             {
                 Console.WriteLine("Can't add animal. Not enough cages.");
             }
@@ -91,7 +91,7 @@ namespace ZooKeepingSystem
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine($"There are : {animals.GetNumberOfAnimals()} animals");
+                    Console.WriteLine($"There are : {animals.NumberOfAnimals} animals");
                     AnimalManagement.ConfirmMessage();
                     break;
                 case "2":
