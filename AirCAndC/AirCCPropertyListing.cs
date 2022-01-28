@@ -41,7 +41,7 @@ namespace AirCandC_api
         /// <summary>
         /// Gets price for rent type offered.
         /// </summary>
-        public int PriceForPackage
+        public decimal PriceForPackage
         {
             get;
             private set;
@@ -60,7 +60,7 @@ namespace AirCandC_api
         /// <param name="priceForPackage">Price associated with renting package chosen.</param>
         /// <param name="amenities">Amenities associated with this listing.</param>
         public AirCCPropertyListing(int numberOfRooms, int numberOfBathrooms, int squareFootage, 
-            string address, RenterPackages rentTypeOffered, int priceForPackage, List<Amenities> amenities)
+            string address, RenterPackages rentTypeOffered, decimal priceForPackage, List<Amenities> amenities)
         {
             this.numberOfRooms = numberOfRooms;
             this.numberOfBathrooms = numberOfBathrooms;
