@@ -25,19 +25,35 @@ namespace ZooKeepingSystem
             set;
         }
 
+        public string ZooName
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Initializes a zoo with a set number of cages, number of zoo keepers, and list of animals.
         /// </summary>
         /// <param name="numberOfCages">Number of cages.</param>
         /// <param name="numberOfZooKeepers">Total number of zoo keepers employed.</param>
         /// <param name="animals">Animals.</param>
-        public Zoo(int numberOfCages, int numberOfZooKeepers, Animals animals)
+        /// <param name="zooName">Name of the zoo.</param>
+        public Zoo(string zooName, int numberOfCages, int numberOfZooKeepers, Animals animals)
         {
+            ZooName = zooName;
             NumberOfCages = numberOfCages;
             NumberOfZooKeepers = numberOfZooKeepers;
             AnimalsInZoo = animals;
         }
-        
+
+        /// <summary>
+        /// Initializes a zoo with a name, 0 cages, 1 zoo keeper, and no animals in the care.
+        /// </summary>
+        /// <param name="zooName">The name of the zoo.</param>
+        public Zoo(string zooName) : this(zooName, 0, 1, null)
+        {
+        }
+
         /// <summary>
         /// Returns a string representation of the zoo.
         /// </summary>
