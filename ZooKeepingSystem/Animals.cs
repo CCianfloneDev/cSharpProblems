@@ -20,12 +20,14 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
-        /// Returns number of animals in list of species.
+        /// Gets number of animals.
         /// </summary>
-        /// <returns>Number of animals.</returns>
-        public int GetNumberOfAnimals()
+        public int NumberOfAnimals
         {
-            return animals.Count;
+            get 
+            { 
+                return animals.Count; 
+            }
         }
 
         /// <summary>
