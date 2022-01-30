@@ -24,7 +24,7 @@ namespace ZooKeepingSystem
             
             Animals animals = new Animals(listOfAnimals);
             // initializing Zoo with given number of cages, zoo keepers, and list of animals.
-            Zoo AssinaboineZoo = new Zoo(7, 5, animals);
+            Zoo AssinaboineZoo = new Zoo("Assinaboine Zoo", 7, 5, animals);
 
             // initializing menus
             EmployeeManagement employeeSystem = new EmployeeManagement(AssinaboineZoo);
@@ -34,6 +34,7 @@ namespace ZooKeepingSystem
             do
             {
                 Console.WriteLine("ZooKeepingSystem");
+                Console.WriteLine(AssinaboineZoo.ZooName);
                 Console.WriteLine("Designed by: Cole Cianflone\nPlease choose an option 1 - 3.");
                 Console.WriteLine("Press 9 to exit.");
                 Console.WriteLine(" Option (1): Employee management\n Option (2): Equipment management\n Option (3): Animal management");
