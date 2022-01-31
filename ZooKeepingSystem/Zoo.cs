@@ -78,7 +78,7 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
-        /// Initializes a zoo with a name, 0 cages, 1 zoo keeper, and no animals in the care.
+        /// Initializes a zoo with a name, 1 cage, 1 zoo keeper, and no animals in the care.
         /// </summary>
         /// <param name="zooName">The name of the zoo.</param>
         public Zoo(string zooName) : this(zooName, 1, 1, null)
