@@ -35,6 +35,39 @@ namespace ParkingSystem
         }
         
         /// <summary>
+        /// Gets the cost of parking pass chosen.
+        /// </summary>
+        public decimal Cost
+        {
+            get
+            {
+                const decimal MonthlyPassCost = 30;
+                const decimal WeeklyPassCost = 15;
+                const decimal YearlyPassCost = 90;
+                const decimal DailyPassCost = 5;
+                
+                decimal cost = 0;
+                
+                switch (PassChosen)
+                {
+                    case ParkingPass.MonthlyPass:
+                        cost = MonthlyPassCost;
+                        break;
+                    case ParkingPass.WeeklyPass:
+                        cost = WeeklyPassCost;
+                        break;
+                    case ParkingPass.YearlyPass:
+                        cost = YearlyPassCost;
+                        break;
+                    case ParkingPass.DailyPass:
+                        cost = DailyPassCost;
+                        break;
+                }
+                return cost;
+            }
+        }
+        
+        /// <summary>
         /// Initializes parking garage with a given number of max parking spots, remaining parking spots, and the parking pass chosen.
         /// </summary>
         /// <param name="maxParkingSpots">Maximum parking capacity of parking garage.</param>
@@ -57,35 +90,6 @@ namespace ParkingSystem
             this.RemainingParkingSpots = remainingParkingSpots;
             this.PassChosen = passChosen;
 
-        }
-
-        /// <summary>
-        /// Returns cost of parking pass chosen.
-        /// </summary>
-        /// <returns>Cost of parking pass.</returns>
-        public int GetCost()
-        {
-            int cost = 0;
-            const int MonthlyPassCost = 30;
-            const int WeeklyPassCost = 15;
-            const int YearlyPassCost = 90;
-            const int DailyPassCost = 5;
-            switch (PassChosen)
-            {
-                case ParkingPass.MonthlyPass:
-                    cost = MonthlyPassCost;
-                    break;
-                case ParkingPass.WeeklyPass:
-                    cost = WeeklyPassCost;
-                    break;
-                case ParkingPass.YearlyPass:
-                    cost = YearlyPassCost;
-                    break;
-                case ParkingPass.DailyPass:
-                    cost = DailyPassCost;
-                    break;
-            }
-            return cost;
         }
     }
 }
