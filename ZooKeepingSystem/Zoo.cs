@@ -7,13 +7,27 @@ namespace ZooKeepingSystem
     /// </summary>
     public class Zoo
     {
+        private string zooName;
+        private int numberOfZooKeepers;
+        private int numberOfCages;
+
         /// <summary>
         /// Gets and sets number of cages.
         /// </summary>
         public int NumberOfCages
         {
-            get;
-            set;
+            get
+            {
+                return this.numberOfCages;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("numberOfCages", "Argument cannot be less than zero.");
+                }
+                this.numberOfCages = value;
+            }
         }
 
         /// <summary>
@@ -21,8 +35,18 @@ namespace ZooKeepingSystem
         /// </summary>
         public int NumberOfZooKeepers
         {
-            get;
-            set;
+            get
+            {
+                return this.numberOfZooKeepers;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("numberOfZooKeepers", "Argument cannot be less than zero.");
+                }
+                this.numberOfZooKeepers = value;
+            }
         }
 
         /// <summary>
@@ -35,12 +59,22 @@ namespace ZooKeepingSystem
         }
 
         /// <summary>
-        /// Gets and sets the name of the zoo.
+        /// Gets the name of the zoo.
         /// </summary>
         public string ZooName
         {
-            get;
-            private set;
+            get
+            {
+                return this.zooName;
+            }
+            private set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("zooName", "Name cannot be null.");
+                }
+                this.zooName = value;
+            }
         }
 
         /// <summary>
@@ -58,19 +92,6 @@ namespace ZooKeepingSystem
         /// </exception>
         public Zoo(string zooName, int numberOfCages, int numberOfZooKeepers, Animals animals)
         {
-            if (zooName == null)
-            {
-                throw new ArgumentNullException("Name", "Name cannot be null.");
-            }
-            if (numberOfCages < 0)
-            {
-                throw new ArgumentOutOfRangeException("NumberOfCages", "Argument cannot be less than zero.");
-            }
-            if (numberOfZooKeepers < 0)
-            {
-                throw new ArgumentOutOfRangeException("NumberOfZooKeepers", "Argument cannot be less than zero.");
-            }
-
             ZooName = zooName;
             NumberOfCages = numberOfCages;
             NumberOfZooKeepers = numberOfZooKeepers;
