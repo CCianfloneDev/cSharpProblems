@@ -38,7 +38,17 @@ namespace ZooKeepingSystem
                 Console.WriteLine("Designed by: Cole Cianflone\nPlease choose an option 1 - 3.");
                 Console.WriteLine("Press 9 to exit.");
                 Console.WriteLine(" Option (1): Employee management\n Option (2): Equipment management\n Option (3): Animal management");
-                optionChosen = Convert.ToInt32(Console.ReadLine());
+
+                // Try catch stops user from entering an unexpected format. I.E any key other than the options 1-3 & 9
+                try
+                {
+                    optionChosen = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.Clear();
+                    continue;
+                }
 
                 Console.Clear();
                 switch (optionChosen)
