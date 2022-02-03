@@ -24,7 +24,7 @@ namespace ZooKeepingSystem
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("numberOfCages", "Argument cannot be less than zero.");
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
                 this.numberOfCages = value;
             }
@@ -43,7 +43,7 @@ namespace ZooKeepingSystem
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("numberOfZooKeepers", "Argument cannot be less than zero.");
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
                 this.numberOfZooKeepers = value;
             }
@@ -71,7 +71,7 @@ namespace ZooKeepingSystem
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("zooName", "Name cannot be null.");
+                    throw new ArgumentNullException("value", "Name cannot be null.");
                 }
                 this.zooName = value;
             }
