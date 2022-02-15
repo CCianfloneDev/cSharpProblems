@@ -15,7 +15,7 @@ namespace ColesStopAndShop
         private int storeId;
 
         /// <summary>
-        /// Gets the credit balance of a cash register.
+        /// Gets the credit balance of a cash register, balance will be positive.
         /// </summary>
         public decimal CreditBalance
         {
