@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ColesStopAndShop
@@ -10,6 +10,7 @@ namespace ColesStopAndShop
     {
         private decimal creditBalance;
         private decimal debitBalance;
+        private decimal cashBalance;
         private decimal salesTaxRate;
         private int storeId;
 
