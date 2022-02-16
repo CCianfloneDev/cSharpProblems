@@ -26,6 +26,10 @@ namespace ColesStopAndShop
 
             private set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
                 creditBalance = value;
             }
         }
