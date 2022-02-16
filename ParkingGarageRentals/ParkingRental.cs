@@ -33,8 +33,12 @@ namespace ParkingSystem
                 {
                     throw new ArgumentOutOfRangeException("value", "There must be at least 1 parking spot.");
                 }
-                this._maxParkingSpots = value;
-                OnMaxParkingSpotsChanged();
+                
+                if(this._maxParkingSpots != value)
+                {
+                    this._maxParkingSpots = value;
+                    OnMaxParkingSpotsChanged();
+                }
             };
         }
 
