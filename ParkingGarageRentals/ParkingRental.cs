@@ -12,6 +12,8 @@ namespace ParkingSystem
     {
         private int _maxParkingSpots;
         
+        public event EventHandler MaxParkingSpotsChanged;
+        
         /// <summary>
         /// Gets maximum number of parking spots.
         /// </summary>
@@ -109,6 +111,17 @@ namespace ParkingSystem
             this.RemainingParkingSpots = remainingParkingSpots;
             this.PassChosen = passChosen;
 
+        }
+        
+        protected virtual void OnMaxParkingSpotsChanged(object sender, EventArgs e)
+        {
+            EventHandler maxParkingSpotsChanged = this.MaxParkingSpotsChanged;
+            
+            if(maxParkingSpotsChanged != null)
+            {
+                // $"Max Parking Spots Changed to {_maxParkingSpots}!"
+                MaxParkingSpotsChanged(this, new EventArgs());
+            }
         }
     }
 }
