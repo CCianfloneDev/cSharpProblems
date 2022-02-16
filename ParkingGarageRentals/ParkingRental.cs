@@ -10,12 +10,26 @@ namespace ParkingSystem
     /// </summary>
     class ParkingRental
     {
+        private int _maxParkingSpots;
+        
         /// <summary>
         /// Gets maximum number of parking spots.
         /// </summary>
         public int MaxParkingSpots
         {
-            get; private set;
+            get
+            {
+                return _maxParkingSpots;
+            }
+            
+            private set
+            {
+                if(value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("value", "There must be at least 1 parking spot.");
+                }
+                this._maxParkingSpots = value;
+            };
         }
 
         /// <summary>
@@ -73,20 +87,25 @@ namespace ParkingSystem
         /// <param name="maxParkingSpots">Maximum parking capacity of parking garage.</param>
         /// <param name="remainingParkingSpots">Remaining parking spots of parking garage.</param>
         /// <param name="passChosen">Parking pass chosen associated to the parking garage.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when max parking spots or remaining parking spots is initialized below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when max parking spots is initialized below 1 or remaining parking spots is initialized below 0.
+        /// </exception>
         public ParkingRental(int maxParkingSpots, int remainingParkingSpots, ParkingPass passChosen)
         {
-            if(maxParkingSpots < 0)
-            {
-                throw new ArgumentOutOfRangeException("maxParkingSpots", "Argument cannot be less than zero.");
-            }
             if(remainingParkingSpots < 0)
             {
                 throw new ArgumentOutOfRangeException("remainingParkingSpots", "Argument cannot be less than zero.");
             }
 
-
-            this.MaxParkingSpots = maxParkingSpots;
+            try
+            {
+                this.MaxParkingSpots = maxParkingSpots;
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+                throw new ArgumentOutOfRangeException("Invalid Parking Spots.", e);
+            }
+            
             this.RemainingParkingSpots = remainingParkingSpots;
             this.PassChosen = passChosen;
 
