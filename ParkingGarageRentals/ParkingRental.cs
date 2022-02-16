@@ -31,6 +31,7 @@ namespace ParkingSystem
                     throw new ArgumentOutOfRangeException("value", "There must be at least 1 parking spot.");
                 }
                 this._maxParkingSpots = value;
+                OnMaxParkingSpotsChanged();
             };
         }
 
@@ -113,7 +114,7 @@ namespace ParkingSystem
 
         }
         
-        protected virtual void OnMaxParkingSpotsChanged(object sender, EventArgs e)
+        protected virtual void OnMaxParkingSpotsChanged()
         {
             EventHandler maxParkingSpotsChanged = this.MaxParkingSpotsChanged;
             
