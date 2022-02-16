@@ -11,7 +11,8 @@ namespace ColesStopAndShop
         private decimal creditBalance;
         private decimal debitBalance;
         private decimal cashBalance;
-        private decimal salesTaxRate;
+        private decimal pstRate;
+        private decimal gstRate;
         private int storeId;
 
         /// <summary>
@@ -55,19 +56,46 @@ namespace ColesStopAndShop
         }
 
         /// <summary>
-        /// Gets sales tax rate.
+        /// Gets combined sales tax rate of PST and GST.
         /// </summary>
         public decimal SalesTaxRate
         {
             get
             {
-                return salesTaxRate;
+                return PstRate + GstRate;
+            }
+        }
+
+        /// <summary>
+        /// Gets PstRate associated with cash register. (Determined by provincial government.)
+        /// </summary>
+        public decimal PstRate
+        {
+            get
+            {
+                return this.pstRate;
             }
             private set
             {
-                salesTaxRate = value;
+                this.pstRate = value;
             }
         }
+
+        /// <summary>
+        /// Gets GstRate associated with cash register. (Determined by federal government.)
+        /// </summary>
+        public decimal GstRate
+        {
+            get
+            {
+                return this.gstRate;
+            }
+            private set
+            {
+                this.gstRate = value;
+            }
+        }
+
         /// <summary>
         /// Gets the store ID.
         /// </summary>
@@ -90,11 +118,15 @@ namespace ColesStopAndShop
         /// <param name="creditBalance">Credit balance.</param>
         /// <param name="debitBalance">Debit balance.</param>
         /// <param name="storeId">Store ID.</param>
-        public CashRegister(decimal creditBalance, decimal debitBalance, int storeId)
+        /// <param name="gstRate">Federal sales tax rate.</param>
+        /// <param name="pstRate">Provincial sales tax rate.</param>
+        public CashRegister(decimal creditBalance, decimal debitBalance, int storeId, decimal pstRate, decimal gstRate)
         {
             CreditBalance = creditBalance;
             DebitBalance = debitBalance;
             StoreId = storeId;
+            PstRate = pstRate;
+            GstRate = gstRate;
         }
 
         /// <summary>
@@ -155,7 +187,7 @@ namespace ColesStopAndShop
                 }
             }
 
-            totalCostOfPurchase *= salesTaxRate;
+            totalCostOfPurchase *= SalesTaxRate;
 
             // Converts items to string for receipt.
             List<string> itemsBoughtToString = new List<string>();
