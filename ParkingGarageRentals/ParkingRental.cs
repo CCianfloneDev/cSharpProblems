@@ -12,6 +12,9 @@ namespace ParkingSystem
     {
         private int _maxParkingSpots;
         
+        /// <summary>
+        /// Occurs when the max parking spots change.
+        /// </summary>
         public event EventHandler MaxParkingSpotsChanged;
         
         /// <summary>
@@ -114,6 +117,9 @@ namespace ParkingSystem
 
         }
         
+        /// <summary>
+        /// Raised when the max parking spots change.
+        /// </summary>
         protected virtual void OnMaxParkingSpotsChanged()
         {
             EventHandler maxParkingSpotsChanged = this.MaxParkingSpotsChanged;
