@@ -39,7 +39,7 @@ namespace ParkingSystem
                     this._maxParkingSpots = value;
                     OnMaxParkingSpotsChanged();
                 }
-            };
+            }
         }
 
         /// <summary>
