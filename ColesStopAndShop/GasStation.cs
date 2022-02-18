@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ColesStopAndShop
 {
     /// <summary>
@@ -60,6 +62,15 @@ namespace ColesStopAndShop
         }
 
         /// <summary>
+        /// Gets list of all items with respective prices at store.
+        /// </summary>
+        public IDictionary<ItemId, decimal> AllItemsAtStore
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// Initializes a gas station with a given address, number of gas pumps, store ID, number of employees, whether it serves hot food or not, and whether it is a rest stop or not.
         /// </summary>
         /// <param name="address">Address of gas station.</param>
@@ -68,7 +79,8 @@ namespace ColesStopAndShop
         /// <param name="numberOfEmployees">Number of employees working for gas station.</param>
         /// <param name="servesHotFood">Has hot food or not.</param>
         /// <param name="isRestStop">Is a rest stop or not.</param>
-        public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop)
+        /// <param name="allItemsAtStore">All items for sale at this store.</param>
+        public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop, IDictionary<ItemId, decimal> allItemsAtStore)
         {
             Address = address;
             NumberOfGasPumps = numberOfGasPumps;
@@ -76,6 +88,7 @@ namespace ColesStopAndShop
             NumberOfEmployees = numberOfEmployees;
             ServesHotFood = servesHotFood;
             IsRestStop = isRestStop;
+            AllItemsAtStore = allItemsAtStore;
         }
 
         /// <summary>
