@@ -56,6 +56,26 @@ namespace ColesStopAndShop
         }
 
         /// <summary>
+        /// Gets the cash balance of a cash register.
+        /// </summary>
+        public decimal CashBalance
+        {
+            get
+            {
+                return cashBalance;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
+                cashBalance = value;
+            }
+        }
+
+        /// <summary>
         /// Gets combined sales tax rate of PST and GST.
         /// </summary>
         public decimal SalesTaxRate
@@ -126,22 +146,27 @@ namespace ColesStopAndShop
         /// </summary>
         /// <param name="creditBalance">Credit balance.</param>
         /// <param name="debitBalance">Debit balance.</param>
+        /// <param name="cashBalance">Cash balance.</param>
         /// <param name="storeDeployedAt">Gas station in which it's deployed.</param>
         /// <param name="gstRate">Federal sales tax rate.</param>
         /// <param name="pstRate">Provincial sales tax rate.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when credit balance or debit balance is less than zero.
+        /// Thrown when credit balance, debit balance or cash balance is less than zero.
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when store associated to isn't of valid reference type.
         /// </exception>
-        public CashRegister(decimal creditBalance, decimal debitBalance, GasStation storeDeployedAt, decimal pstRate, decimal gstRate)
+        public CashRegister(decimal creditBalance, decimal debitBalance, decimal cashBalance, GasStation storeDeployedAt, decimal pstRate, decimal gstRate)
         {
             if (creditBalance < 0)
             {
                 throw new ArgumentOutOfRangeException("creditBalance", "Credit balance cannot be less than zero.");
             }
             if (debitBalance < 0)
+            {
+                throw new ArgumentOutOfRangeException("debitBalance", "Debit balance cannot be less than zero.");
+            }
+            if (cashBalance < 0)
             {
                 throw new ArgumentOutOfRangeException("debitBalance", "Debit balance cannot be less than zero.");
             }
@@ -152,6 +177,7 @@ namespace ColesStopAndShop
 
             CreditBalance = creditBalance;
             DebitBalance = debitBalance;
+            CashBalance = cashBalance;
             StoreDeployedAt = storeDeployedAt;
             PstRate = pstRate;
             GstRate = gstRate;
@@ -160,21 +186,21 @@ namespace ColesStopAndShop
         /// <summary>
         /// Processes payment with given fact that it is debit/cash or credit.
         /// </summary>
-        /// <param name="isDebitOrCash">The fact that it is debit/cash or credit.</param>
-        public void ProcessPayment(bool isDebitOrCash)
+        /// <param name="paymentChosen">The payment type chosen by customer.</param>
+        public void ProcessPayment(PaymentType paymentChosen)
         {
             decimal totalCostOfPurchase = 0;
-            List<decimal> listOfItemPricesAtPurchase = new List<decimal>();
+            
             List<ItemId> listOfItems = new List<ItemId>();
 
             // Scans each item given to clerk. 
             do
             {
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Key (9) to process payment.");
 
                 Console.WriteLine("Enter item id: ");
-                decimal.TryParse(Console.ReadLine(), out decimal itemScanned);
+                int.TryParse(Console.ReadLine(), out int itemScanned);
 
                 if (itemScanned == 9)
                 {
@@ -191,27 +217,28 @@ namespace ColesStopAndShop
                 else
                 {
                     listOfItems.Add((ItemId)itemScanned);
-
-                    Console.WriteLine("Enter cost of item: ");
-                    decimal priceOfItem = decimal.Parse(Console.ReadLine());
-
-                    listOfItemPricesAtPurchase.Add(priceOfItem);
                 }
 
             } while (true);
 
             // After items are scanned; affect till balance and get total cost.
-            foreach(decimal itemPrice in listOfItemPricesAtPurchase)
+            foreach (ItemId itemBought in listOfItems)
             {
-                totalCostOfPurchase += itemPrice;
+                decimal pricePerItem = storeDeployedAt.AllItemsAtStore[itemBought];
 
-                if (!isDebitOrCash)
+                totalCostOfPurchase += pricePerItem;
+
+                if (paymentChosen == PaymentType.Credit)
                 {
-                    CreditBalance += itemPrice;
+                    CreditBalance += pricePerItem;
                 }
-                else
+                else if (paymentChosen == PaymentType.Debit)
                 {
-                    DebitBalance += itemPrice;
+                    DebitBalance += pricePerItem;
+                }
+                else if (paymentChosen == PaymentType.Cash)
+                {
+                    CashBalance += pricePerItem;
                 }
             }
 
@@ -232,15 +259,12 @@ namespace ColesStopAndShop
 
             Console.WriteLine("Items: ");
 
-            for (int i = 0; i < listOfItems.Count; i++)
+            foreach (ItemId itemBought in listOfItems)
             { 
-                for (int j = 0; j < listOfItems.Count; j++)
-                {
-                    Console.WriteLine($" {listOfItemPricesAtPurchase[i]} :  {itemsBoughtToString[i]}");
-                }
+                Console.WriteLine($" {storeDeployedAt.AllItemsAtStore[itemBought]} :  {itemBought.ToString()}");
             }
 
-            Console.WriteLine($"\n Items paid for using {(isDebitOrCash ? "Debit/Cash" : "Credit")}");
+            Console.WriteLine($"\n Items paid for using {(paymentChosen.ToString())}");
 
         }
     }
