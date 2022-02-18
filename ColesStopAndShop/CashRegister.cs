@@ -129,8 +129,27 @@ namespace ColesStopAndShop
         /// <param name="storeDeployedAt">Gas station in which it's deployed.</param>
         /// <param name="gstRate">Federal sales tax rate.</param>
         /// <param name="pstRate">Provincial sales tax rate.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when credit balance or debit balance is less than zero.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when store associated to isn't of valid reference type.
+        /// </exception>
         public CashRegister(decimal creditBalance, decimal debitBalance, GasStation storeDeployedAt, decimal pstRate, decimal gstRate)
         {
+            if (creditBalance < 0)
+            {
+                throw new ArgumentOutOfRangeException("creditBalance", "Credit balance cannot be less than zero.");
+            }
+            if (debitBalance < 0)
+            {
+                throw new ArgumentOutOfRangeException("debitBalance", "Debit balance cannot be less than zero.");
+            }
+            if (storeDeployedAt.GetType() != typeof(GasStation))
+            {
+                throw new ArgumentException("storeDeployedAt", "Must be of type gas station.");
+            }
+
             CreditBalance = creditBalance;
             DebitBalance = debitBalance;
             StoreDeployedAt = storeDeployedAt;
