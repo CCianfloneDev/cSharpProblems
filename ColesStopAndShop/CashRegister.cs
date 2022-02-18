@@ -164,7 +164,7 @@ namespace ColesStopAndShop
         public void ProcessPayment(bool isDebitOrCash)
         {
             decimal totalCostOfPurchase = 0;
-            List<int> listOfItemPricesAtPurchase = new List<int>();
+            List<decimal> listOfItemPricesAtPurchase = new List<decimal>();
             List<ItemId> listOfItems = new List<ItemId>();
 
             // Scans each item given to clerk. 
@@ -174,7 +174,7 @@ namespace ColesStopAndShop
                 Console.WriteLine("Key (9) to process payment.");
 
                 Console.WriteLine("Enter item id: ");
-                int.TryParse(Console.ReadLine(), out int itemScanned);
+                decimal.TryParse(Console.ReadLine(), out decimal itemScanned);
 
                 if (itemScanned == 9)
                 {
@@ -193,7 +193,7 @@ namespace ColesStopAndShop
                     listOfItems.Add((ItemId)itemScanned);
 
                     Console.WriteLine("Enter cost of item: ");
-                    int priceOfItem = int.Parse(Console.ReadLine());
+                    decimal priceOfItem = decimal.Parse(Console.ReadLine());
 
                     listOfItemPricesAtPurchase.Add(priceOfItem);
                 }
@@ -201,7 +201,7 @@ namespace ColesStopAndShop
             } while (true);
 
             // After items are scanned; affect till balance and get total cost.
-            foreach(int itemPrice in listOfItemPricesAtPurchase)
+            foreach(decimal itemPrice in listOfItemPricesAtPurchase)
             {
                 totalCostOfPurchase += itemPrice;
 
@@ -233,7 +233,7 @@ namespace ColesStopAndShop
             Console.WriteLine("Items: ");
 
             for (int i = 0; i < listOfItems.Count; i++)
-            {
+            { 
                 for (int j = 0; j < listOfItems.Count; j++)
                 {
                     Console.WriteLine($" {listOfItemPricesAtPurchase[i]} :  {itemsBoughtToString[i]}");
