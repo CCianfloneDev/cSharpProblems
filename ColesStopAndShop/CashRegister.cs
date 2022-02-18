@@ -13,7 +13,7 @@ namespace ColesStopAndShop
         private decimal cashBalance;
         private decimal pstRate;
         private decimal gstRate;
-        private int storeId;
+        private GasStation storeDeployedAt;
 
         /// <summary>
         /// Gets the credit balance of a cash register, balance will be positive.
@@ -97,18 +97,27 @@ namespace ColesStopAndShop
         }
 
         /// <summary>
-        /// Gets the store ID.
+        /// Gets the store this cash register is deployed at.
         /// </summary>
-        public int StoreId
+        public GasStation StoreDeployedAt
         {
             get
             {
-                return storeId;
+                return this.storeDeployedAt;
             }
 
             private set
             {
-                storeId = value;
+                if (value == null)
+                {
+                    throw new ArgumentException("Must assign this cash register to a store.");
+                }
+                if (value.GetType() != typeof(GasStation))
+                {
+                    throw new ArgumentException("Must be of type Gas Station.");
+                }
+                
+                this.storeDeployedAt = value;
             }
         }
 
@@ -117,14 +126,14 @@ namespace ColesStopAndShop
         /// </summary>
         /// <param name="creditBalance">Credit balance.</param>
         /// <param name="debitBalance">Debit balance.</param>
-        /// <param name="storeId">Store ID.</param>
+        /// <param name="storeDeployedAt">Gas station in which it's deployed.</param>
         /// <param name="gstRate">Federal sales tax rate.</param>
         /// <param name="pstRate">Provincial sales tax rate.</param>
-        public CashRegister(decimal creditBalance, decimal debitBalance, int storeId, decimal pstRate, decimal gstRate)
+        public CashRegister(decimal creditBalance, decimal debitBalance, GasStation storeDeployedAt, decimal pstRate, decimal gstRate)
         {
             CreditBalance = creditBalance;
             DebitBalance = debitBalance;
-            StoreId = storeId;
+            StoreDeployedAt = storeDeployedAt;
             PstRate = pstRate;
             GstRate = gstRate;
         }
