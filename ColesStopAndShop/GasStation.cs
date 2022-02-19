@@ -153,13 +153,13 @@ namespace ColesStopAndShop
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Gas station:" +
-                   $"\n Address: {Address}" +
-                   $"\n Number of gas pumps: {NumberOfGasPumps}" +
-                   $"\n Store ID: {StoreId}" +
-                   $"\n Number of employees: {NumberOfEmployees}" +
-                   $"\n Has hot food?: {ServesHotFood}" +
-                   $"\n Is a rest stop?: {IsRestStop}";
+            return "Gas station:" +
+                   $"Address: {Address}\n" +
+                   $"Number of gas pumps: {NumberOfGasPumps}\n" +
+                   $"Store ID: {StoreId}\n" +
+                   $"Number of employees: {NumberOfEmployees}\n" +
+                   $"Has hot food?: {ServesHotFood}\n" +
+                   $"Is a rest stop?: {IsRestStop}\n";
         }
     }
 }
