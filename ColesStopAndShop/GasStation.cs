@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ColesStopAndShop
@@ -7,6 +8,11 @@ namespace ColesStopAndShop
     /// </summary>
     public class GasStation
     {
+        private int numberOfGasPumps;
+        private int storeId;
+        private int numberOfEmployees;
+
+
         /// <summary>
         /// Gets address of gas station.
         /// </summary>
@@ -21,8 +27,19 @@ namespace ColesStopAndShop
         /// </summary>
         public int NumberOfGasPumps
         {
-            get;
-            private set;
+            get
+            {
+                return this.numberOfGasPumps;
+            }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
+
+                this.numberOfGasPumps = value;
+            }
         }
 
         /// <summary>
@@ -30,8 +47,19 @@ namespace ColesStopAndShop
         /// </summary>
         public int StoreId
         {
-            get;
-            private set;
+            get
+            {
+                return this.storeId;
+            }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
+
+                this.storeId = value;
+            }
         }
 
         /// <summary>
@@ -39,8 +67,19 @@ namespace ColesStopAndShop
         /// </summary>
         public int NumberOfEmployees
         {
-            get;
-            set;
+            get
+            {
+                return this.numberOfEmployees;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
+
+                this.numberOfEmployees = value;
+            }
         }
 
         /// <summary>
