@@ -121,6 +121,23 @@ namespace ColesStopAndShop
         /// <param name="allItemsAtStore">All items for sale at this store.</param>
         public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop, IDictionary<ItemId, decimal> allItemsAtStore)
         {
+            if (address == null)
+            {
+                throw new ArgumentNullException("address", "Gas station cannot be instantiated without an address.");
+            }
+            if (numberOfGasPumps < 0)
+            {
+                throw new ArgumentOutOfRangeException("numberOfGasPumps", "Cannot have negative gas pumps.");
+            }
+            if (storeId < 0)
+            {
+                throw new ArgumentOutOfRangeException("storeId", "Gas station cannot be instantiated with negative store Id.");
+            }
+            if (numberOfEmployees <= 0)
+            {
+                throw new ArgumentOutOfRangeException("numberOfEmployees", "Cannot open gas station with zero or negative employees.");
+            }
+
             Address = address;
             NumberOfGasPumps = numberOfGasPumps;
             StoreId = storeId;
