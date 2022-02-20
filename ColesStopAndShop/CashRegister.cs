@@ -189,7 +189,9 @@ namespace ColesStopAndShop
         /// <param name="paymentChosen">The payment type chosen by customer.</param>
         public void ProcessPayment(PaymentType paymentChosen)
         {
-            decimal totalCostOfPurchase = 0;
+            decimal salesTaxCharged = 0;
+            decimal total = 0;
+            decimal subTotal = 0;
             
             List<ItemId> listOfItems = new List<ItemId>();
 
@@ -225,8 +227,7 @@ namespace ColesStopAndShop
             foreach (ItemId itemBought in listOfItems)
             {
                 decimal pricePerItem = storeDeployedAt.AllItemsAtStore[itemBought];
-
-                totalCostOfPurchase += pricePerItem;
+                subTotal += pricePerItem;
 
                 if (paymentChosen == PaymentType.Credit)
                 {
@@ -241,8 +242,8 @@ namespace ColesStopAndShop
                     CashBalance += pricePerItem;
                 }
             }
-
-            totalCostOfPurchase *= SalesTaxRate;
+            salesTaxCharged = subTotal * SalesTaxRate;
+            total = subTotal + salesTaxCharged;
 
             // Converts items to string for receipt.
             List<string> itemsBoughtToString = new List<string>();
@@ -254,18 +255,19 @@ namespace ColesStopAndShop
             /*
              * Prints Receipt below 
              */
+            Console.Clear();
+            Console.WriteLine($"Thanks for stopin' and shopin' at Cole's Stop and Shop!\n");
 
-            Console.WriteLine($"Thanks for stopin' and shopin' at Cole's Stop and Shop!");
-
-            Console.WriteLine("Items: ");
+            Console.WriteLine(" Here's your receipt.\n");
 
             foreach (ItemId itemBought in listOfItems)
             { 
-                Console.WriteLine($" {storeDeployedAt.AllItemsAtStore[itemBought]} :  {itemBought.ToString()}");
+                Console.WriteLine($" {itemBought.ToString()} : ${storeDeployedAt.AllItemsAtStore[itemBought]}");
             }
-
-            Console.WriteLine($"\n Items paid for using {(paymentChosen.ToString())}");
-
+            Console.WriteLine($" Sub total: ${subTotal}");
+            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged,2)}");
+            Console.WriteLine($" Total cost: ${decimal.Round(total,2)}");
+            Console.WriteLine($" Items paid for using {(paymentChosen.ToString())}\n");
         }
     }
 }
