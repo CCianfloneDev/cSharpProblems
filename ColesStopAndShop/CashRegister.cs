@@ -220,9 +220,9 @@ namespace ColesStopAndShop
                 {
                     // This loop checks to verify the key exists in the pre-defined dictionary before adding it.
                     // No error message is thrown if non existent and nothing is added to list, just moves on to next item.
-                    foreach (int item in storeDeployedAt.AllItemsAtStore.Keys)
+                    foreach (ItemId itemId in storeDeployedAt.AllItemsAtStore.Keys)
                     {
-                        if (itemScanned == item)
+                        if ((ItemId)itemScanned == itemId)
                         {
                             listOfItems.Add((ItemId)itemScanned);
                         }
