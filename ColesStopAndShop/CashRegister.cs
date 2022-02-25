@@ -225,6 +225,7 @@ namespace ColesStopAndShop
                         if ((ItemId)itemScanned == itemId)
                         {
                             listOfItems.Add((ItemId)itemScanned);
+                            break;
                         }
                     }
                 }
