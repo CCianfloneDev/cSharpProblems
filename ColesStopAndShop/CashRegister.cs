@@ -218,7 +218,16 @@ namespace ColesStopAndShop
                 }
                 else
                 {
-                    listOfItems.Add((ItemId)itemScanned);
+                    // This loop checks to verify the key exists in the pre-defined dictionary before adding it.
+                    // No error message is thrown if non existent and nothing is added to list, just moves on to next item.
+                    foreach (ItemId itemId in storeDeployedAt.AllItemsAtStore.Keys)
+                    {
+                        if ((ItemId)itemScanned == itemId)
+                        {
+                            listOfItems.Add((ItemId)itemScanned);
+                            break;
+                        }
+                    }
                 }
 
             } while (true);
@@ -244,13 +253,6 @@ namespace ColesStopAndShop
             }
             salesTaxCharged = subTotal * SalesTaxRate;
             total = subTotal + salesTaxCharged;
-
-            // Converts items to string for receipt.
-            List<string> itemsBoughtToString = new List<string>();
-            foreach (ItemId item in listOfItems)
-            {
-                itemsBoughtToString.Add(item.ToString());
-            }
 
             /*
              * Prints Receipt below 
