@@ -251,6 +251,10 @@ namespace ColesStopAndShop
                     CashBalance += pricePerItem;
                 }
             }
+            // Calculated for purpose of showing tax difference on receipt
+            decimal pstCharged = subTotal * PstRate;
+            decimal gstCharged = subTotal * GstRate;
+
             salesTaxCharged = subTotal * SalesTaxRate;
             total = subTotal + salesTaxCharged;
 
@@ -267,7 +271,10 @@ namespace ColesStopAndShop
                 Console.WriteLine($" {itemBought.ToString()} : ${storeDeployedAt.AllItemsAtStore[itemBought]}");
             }
             Console.WriteLine($" Sub total: ${subTotal}");
-            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged,2)}");
+            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged, 2)}");
+            // to do:
+            // Print pst charged
+            // Print gst charged
             Console.WriteLine($" Total cost: ${decimal.Round(total,2)}");
             Console.WriteLine($" Items paid for using {(paymentChosen.ToString())}\n");
         }
