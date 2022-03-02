@@ -275,7 +275,8 @@ namespace ColesStopAndShop
             Console.WriteLine($"  PST charged: ${decimal.Round(pstCharged, 2)}");
             Console.WriteLine($"  GST charged: ${decimal.Round(gstCharged, 2)}");
             Console.WriteLine($" Total cost: ${decimal.Round(total,2)}");
-            Console.WriteLine($" Items paid for using {(paymentChosen.ToString())}\n");
+            Console.WriteLine($" Items paid for using: {paymentChosen.ToString()}");
+            Console.WriteLine($" Purchase processed at: {DateTime.Now.ToString()}\n");
         }
     }
 }
