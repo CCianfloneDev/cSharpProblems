@@ -4,292 +4,207 @@ using System.Collections.Generic;
 namespace ColesStopAndShop
 {
     /// <summary>
-    /// Represents a cash register inside of a gas station of Cole's-Stop-And-Shop-franchise.
+    /// Represents a gas station of franchise Cole's Stop And Shop
     /// </summary>
-    public class CashRegister
+    public class GasStation
     {
-        private decimal creditBalance;
-        private decimal debitBalance;
-        private decimal cashBalance;
-        private decimal pstRate;
-        private decimal gstRate;
-        private GasStation storeDeployedAt;
+        private int numberOfGasPumps;
+        private int storeId;
+        private int numberOfEmployees;
+        private decimal fuelCapacity;
+        private Dictionary<int, bool> fuelPumps;
 
         /// <summary>
-        /// Gets the credit balance of a cash register, balance will be positive.
+        /// Gets address of gas station.
         /// </summary>
-        public decimal CreditBalance
+        public string Address
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets number of pumps at gas station.
+        /// </summary>
+        public int NumberOfGasPumps
         {
             get
             {
-                return creditBalance;
+                return this.numberOfGasPumps;
             }
-
             private set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
-                creditBalance = value;
+
+                this.numberOfGasPumps = value;
             }
         }
 
         /// <summary>
-        /// Gets the debit balance of a cash register.
+        /// Gets store id associated with gas station.
         /// </summary>
-        public decimal DebitBalance
+        public int StoreId
         {
             get
             {
-                return debitBalance;
+                return this.storeId;
             }
-
             private set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
-                debitBalance = value;
+
+                this.storeId = value;
             }
         }
 
         /// <summary>
-        /// Gets the cash balance of a cash register.
+        /// Gets number of employees working for gas station.
         /// </summary>
-        public decimal CashBalance
+        public int NumberOfEmployees
         {
             get
             {
-                return cashBalance;
+                return this.numberOfEmployees;
             }
-
-            private set
+            set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
-                cashBalance = value;
+
+                this.numberOfEmployees = value;
             }
         }
 
         /// <summary>
-        /// Gets combined sales tax rate of PST and GST.
+        /// Gets whether it serves hot food or not.
         /// </summary>
-        public decimal SalesTaxRate
+        public bool ServesHotFood
         {
-            get
-            {
-                return PstRate + GstRate;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
-        /// Gets PstRate associated with cash register. (Determined by provincial government.)
+        /// Gets whether it's a rest stop or not.
         /// </summary>
-        public decimal PstRate
+        public bool IsRestStop
         {
-            get
-            {
-                return this.pstRate;
-            }
-            private set
-            {
-                this.pstRate = value;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
-        /// Gets GstRate associated with cash register. (Determined by federal government.)
+        /// Gets list of all items with respective prices at store.
         /// </summary>
-        public decimal GstRate
+        public IDictionary<ItemId, decimal> AllItemsAtStore
         {
-            get
-            {
-                return this.gstRate;
-            }
-            private set
-            {
-                this.gstRate = value;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
-        /// Gets the store this cash register is deployed at.
+        /// Gets and sets fuel capacity of storage tanks, in liters.
         /// </summary>
-        public GasStation StoreDeployedAt
+        public decimal FuelCapacity
         {
             get
             {
-                return this.storeDeployedAt;
+                return this.fuelCapacity;
             }
-
-            private set
+            set
             {
-                if (value == null)
+                if (value < 0)
                 {
-                    throw new ArgumentException("Must assign this cash register to a store.");
-                }
-                if (value.GetType() != typeof(GasStation))
-                {
-                    throw new ArgumentException("Must be of type Gas Station.");
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
                 }
                 
-                this.storeDeployedAt = value;
+                this.fuelCapacity = value;
             }
         }
 
         /// <summary>
-        /// Initializes a cash register with a given credit balance, given debit balance, and ID number of associated store.
+        /// Gets and sets fuel pumps at gas station.
         /// </summary>
-        /// <param name="creditBalance">Credit balance.</param>
-        /// <param name="debitBalance">Debit balance.</param>
-        /// <param name="cashBalance">Cash balance.</param>
-        /// <param name="storeDeployedAt">Gas station in which it's deployed.</param>
-        /// <param name="gstRate">Federal sales tax rate.</param>
-        /// <param name="pstRate">Provincial sales tax rate.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when credit balance, debit balance or cash balance is less than zero.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown when store associated to isn't of valid reference type.
-        /// </exception>
-        public CashRegister(decimal creditBalance, decimal debitBalance, decimal cashBalance, GasStation storeDeployedAt, decimal pstRate, decimal gstRate)
+        public Dictionary<int, bool> FuelPumps
         {
-            if (creditBalance < 0)
+            get
             {
-                throw new ArgumentOutOfRangeException("creditBalance", "Credit balance cannot be less than zero.");
+                return this.fuelPumps;
             }
-            if (debitBalance < 0)
-            {
-                throw new ArgumentOutOfRangeException("debitBalance", "Debit balance cannot be less than zero.");
-            }
-            if (cashBalance < 0)
-            {
-                throw new ArgumentOutOfRangeException("debitBalance", "Debit balance cannot be less than zero.");
-            }
-            if (storeDeployedAt.GetType() != typeof(GasStation))
-            {
-                throw new ArgumentException("storeDeployedAt", "Must be of type gas station.");
-            }
-
-            CreditBalance = creditBalance;
-            DebitBalance = debitBalance;
-            CashBalance = cashBalance;
-            StoreDeployedAt = storeDeployedAt;
-            PstRate = pstRate;
-            GstRate = gstRate;
-        }
-
-        /// <summary>
-        /// Processes payment with given fact that it is debit/cash or credit.
-        /// </summary>
-        /// <param name="paymentChosen">The payment type chosen by customer.</param>
-        public void ProcessPayment(PaymentType paymentChosen)
-        {
-            decimal salesTaxCharged = 0;
-            decimal total = 0;
-            decimal subTotal = 0;
-            
-            List<ItemId> listOfItems = new List<ItemId>();
-
-            // Scans each item given to clerk. 
-            do
-            {
-                Console.Clear();
-
-                Console.WriteLine("Are you getting fuel today? (yes/no)");
-
-                if ((string)Console.ReadLine().ToLower() == "no")
-                {
-                    continue;
-                }
-                else if((string)Console.ReadLine().ToLower() == "yes")
-                {
-                    Console.WriteLine("Which pump are you at?");
-                    // I need to impl. a Dict for gas stations; Dict<int(pumpNum), bool(isPumping)>
-                }
-
-                Console.WriteLine("Key (9) to process payment.");
-
-                Console.WriteLine("Enter item id: ");
-                int.TryParse(Console.ReadLine(), out int itemScanned);
-
-                if (itemScanned == 9)
-                {
-                    break;
-                }
-
-                if (!Enum.IsDefined(typeof(ItemId), itemScanned))
-                {
-                    Console.WriteLine("Invalid item id.");
-                    Console.WriteLine("Press any key to retry...");
-                    Console.ReadKey();
-                    continue;
-                }
-                else
-                {
-                    // This loop checks to verify the key exists in the pre-defined dictionary before adding it.
-                    // No error message is thrown if non existent and nothing is added to list, just moves on to next item.
-                    foreach (ItemId itemId in storeDeployedAt.AllItemsAtStore.Keys)
-                    {
-                        if ((ItemId)itemScanned == itemId)
-                        {
-                            listOfItems.Add((ItemId)itemScanned);
-                            break;
-                        }
-                    }
-                }
-
-            } while (true);
-
-            // After items are scanned; affect till balance and get total cost.
-            foreach (ItemId itemBought in listOfItems)
-            {
-                decimal pricePerItem = storeDeployedAt.AllItemsAtStore[itemBought];
-                subTotal += pricePerItem;
-
-                if (paymentChosen == PaymentType.Credit)
-                {
-                    CreditBalance += pricePerItem;
-                }
-                else if (paymentChosen == PaymentType.Debit)
-                {
-                    DebitBalance += pricePerItem;
-                }
-                else if (paymentChosen == PaymentType.Cash)
-                {
-                    CashBalance += pricePerItem;
-                }
-            }
-            // Calculated for purpose of showing tax difference on receipt
-            decimal pstCharged = subTotal * PstRate;
-            decimal gstCharged = subTotal * GstRate;
-
-            salesTaxCharged = subTotal * SalesTaxRate;
-            total = subTotal + salesTaxCharged;
-
-            /*
-             * Prints Receipt below 
-             */
-            Console.Clear();
-            Console.WriteLine($"Thanks for stopin' and shopin' at Cole's Stop and Shop!\n");
-
-            Console.WriteLine(" Here's your receipt.\n");
-
-            foreach (ItemId itemBought in listOfItems)
+            set 
             { 
-                Console.WriteLine($" {itemBought.ToString()} : ${storeDeployedAt.AllItemsAtStore[itemBought]}");
+                this.fuelPumps = value;
             }
-            Console.WriteLine($" Sub total: ${subTotal}");
-            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged, 2)}");
-            Console.WriteLine($"  PST charged: ${decimal.Round(pstCharged, 2)}");
-            Console.WriteLine($"  GST charged: ${decimal.Round(gstCharged, 2)}");
-            Console.WriteLine($" Total cost: ${decimal.Round(total,2)}");
-            Console.WriteLine($" Items paid for using: {paymentChosen.ToString()}");
-            Console.WriteLine($" Purchase processed at: {DateTime.Now.ToString()}\n");
+        }
+        /// <summary>
+        /// Initializes a gas station with a given address, number of gas pumps, store ID, number of employees, whether it serves hot food or not, and whether it is a rest stop or not.
+        /// </summary>
+        /// <param name="address">Address of gas station.</param>
+        /// <param name="numberOfGasPumps">Number of pumps at gas station.</param>
+        /// <param name="storeId">ID associated with gas station.</param>
+        /// <param name="numberOfEmployees">Number of employees working for gas station.</param>
+        /// <param name="servesHotFood">Has hot food or not.</param>
+        /// <param name="isRestStop">Is a rest stop or not.</param>
+        /// <param name="allItemsAtStore">All items for sale at this store.</param>
+        public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop, IDictionary<ItemId, decimal> allItemsAtStore, decimal fuelCapacity, Dictionary<int, bool> fuelPumps)
+        {
+            if (address == null)
+            {
+                throw new ArgumentNullException("address", "Gas station cannot be instantiated without an address.");
+            }
+            if (numberOfGasPumps < 0)
+            {
+                throw new ArgumentOutOfRangeException("numberOfGasPumps", "Cannot have negative gas pumps.");
+            }
+            if (storeId < 0)
+            {
+                throw new ArgumentOutOfRangeException("storeId", "Gas station cannot be instantiated with negative store Id.");
+            }
+            if (numberOfEmployees <= 0)
+            {
+                throw new ArgumentOutOfRangeException("numberOfEmployees", "Cannot open gas station with zero or negative employees.");
+            }
+            if (fuelCapacity < 0)
+            {
+                throw new ArgumentOutOfRangeException("fuelCapacity", "Cannot open gas station with negative fuel capacity.");
+            }
+            if (fuelPumps.Count < 0)
+            {
+                throw new ArgumentOutOfRangeException("fuelPumps.key", "Cannot have negative fuel pumps.");
+            }
+
+            Address = address;
+            NumberOfGasPumps = numberOfGasPumps;
+            StoreId = storeId;
+            NumberOfEmployees = numberOfEmployees;
+            ServesHotFood = servesHotFood;
+            IsRestStop = isRestStop;
+            AllItemsAtStore = allItemsAtStore;
+            FuelCapacity = fuelCapacity;
+            
+        }
+
+        /// <summary>
+        /// Returns a string representation of the gas station.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return "Gas station:" +
+                   $"Address: {Address}\n" +
+                   $"Number of gas pumps: {NumberOfGasPumps}\n" +
+                   $"Store ID: {StoreId}\n" +
+                   $"Number of employees: {NumberOfEmployees}\n" +
+                   $"Has hot food?: {ServesHotFood}\n" +
+                   $"Is a rest stop?: {IsRestStop}\n";
         }
     }
 }
