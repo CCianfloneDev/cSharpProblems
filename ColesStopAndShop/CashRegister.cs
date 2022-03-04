@@ -199,6 +199,22 @@ namespace ColesStopAndShop
             do
             {
                 Console.Clear();
+
+                Console.WriteLine("Are you getting fuel today? (yes/no)");
+                string gettingFuel = Console.ReadLine().ToLower();
+
+                while(gettingFuel != "no")
+                {
+                    int pumpNumber;
+
+                    Console.WriteLine("Which pump are you at?");
+                    pumpNumber = Int32.Parse(Console.ReadLine());
+
+
+                    // I need to impl. a Dict for gas stations; Dict<int(pumpNum), bool(isPumping)>
+                }
+                Console.Clear();
+
                 Console.WriteLine("Key (9) to process payment.");
 
                 Console.WriteLine("Enter item id: ");
@@ -251,6 +267,10 @@ namespace ColesStopAndShop
                     CashBalance += pricePerItem;
                 }
             }
+            // Calculated for purpose of showing tax difference on receipt
+            decimal pstCharged = subTotal * PstRate;
+            decimal gstCharged = subTotal * GstRate;
+
             salesTaxCharged = subTotal * SalesTaxRate;
             total = subTotal + salesTaxCharged;
 
@@ -267,9 +287,12 @@ namespace ColesStopAndShop
                 Console.WriteLine($" {itemBought.ToString()} : ${storeDeployedAt.AllItemsAtStore[itemBought]}");
             }
             Console.WriteLine($" Sub total: ${subTotal}");
-            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged,2)}");
+            Console.WriteLine($" Tax charged: ${decimal.Round(salesTaxCharged, 2)}");
+            Console.WriteLine($"  PST charged: ${decimal.Round(pstCharged, 2)}");
+            Console.WriteLine($"  GST charged: ${decimal.Round(gstCharged, 2)}");
             Console.WriteLine($" Total cost: ${decimal.Round(total,2)}");
-            Console.WriteLine($" Items paid for using {(paymentChosen.ToString())}\n");
+            Console.WriteLine($" Items paid for using: {paymentChosen.ToString()}");
+            Console.WriteLine($" Purchase processed at: {DateTime.Now.ToString()}\n");
         }
     }
 }
