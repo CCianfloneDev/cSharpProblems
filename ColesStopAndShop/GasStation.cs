@@ -11,7 +11,8 @@ namespace ColesStopAndShop
         private int numberOfGasPumps;
         private int storeId;
         private int numberOfEmployees;
-
+        private decimal fuelCapacity;
+        private Dictionary<int, bool> fuelPumps;
 
         /// <summary>
         /// Gets address of gas station.
@@ -110,6 +111,40 @@ namespace ColesStopAndShop
         }
 
         /// <summary>
+        /// Gets and sets fuel capacity of storage tanks, in liters.
+        /// </summary>
+        public decimal FuelCapacity
+        {
+            get
+            {
+                return this.fuelCapacity;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Argument cannot be less than zero.");
+                }
+                
+                this.fuelCapacity = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets fuel pumps at gas station.
+        /// </summary>
+        public Dictionary<int, bool> FuelPumps
+        {
+            get
+            {
+                return this.fuelPumps;
+            }
+            set 
+            { 
+                this.fuelPumps = value;
+            }
+        }
+        /// <summary>
         /// Initializes a gas station with a given address, number of gas pumps, store ID, number of employees, whether it serves hot food or not, and whether it is a rest stop or not.
         /// </summary>
         /// <param name="address">Address of gas station.</param>
@@ -119,7 +154,7 @@ namespace ColesStopAndShop
         /// <param name="servesHotFood">Has hot food or not.</param>
         /// <param name="isRestStop">Is a rest stop or not.</param>
         /// <param name="allItemsAtStore">All items for sale at this store.</param>
-        public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop, IDictionary<ItemId, decimal> allItemsAtStore)
+        public GasStation(string address, int numberOfGasPumps, int storeId, int numberOfEmployees, bool servesHotFood, bool isRestStop, IDictionary<ItemId, decimal> allItemsAtStore, decimal fuelCapacity, Dictionary<int, bool> fuelPumps)
         {
             if (address == null)
             {
@@ -137,6 +172,14 @@ namespace ColesStopAndShop
             {
                 throw new ArgumentOutOfRangeException("numberOfEmployees", "Cannot open gas station with zero or negative employees.");
             }
+            if (fuelCapacity < 0)
+            {
+                throw new ArgumentOutOfRangeException("fuelCapacity", "Cannot open gas station with negative fuel capacity.");
+            }
+            if (fuelPumps.Count < 0)
+            {
+                throw new ArgumentOutOfRangeException("fuelPumps.key", "Cannot have negative fuel pumps.");
+            }
 
             Address = address;
             NumberOfGasPumps = numberOfGasPumps;
@@ -145,6 +188,8 @@ namespace ColesStopAndShop
             ServesHotFood = servesHotFood;
             IsRestStop = isRestStop;
             AllItemsAtStore = allItemsAtStore;
+            FuelCapacity = fuelCapacity;
+            FuelPumps = fuelPumps;
         }
 
         /// <summary>
